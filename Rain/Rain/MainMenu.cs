@@ -10,22 +10,24 @@ using System.Windows.Forms;
 
 namespace Rain
 {
-    public partial class Form2 : Form
+    public partial class MainMenu : Form
     {
-        public Form2()
+        public MainMenu()
         {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            GroupForming form2 = new GroupForming();
+            form2.Show();
+            this.Hide();
         }
     }
 }
