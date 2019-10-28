@@ -40,6 +40,9 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.groupTextBox = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.separateFriendsCheckBox = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -48,6 +51,7 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -72,19 +76,22 @@
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.NavajoWhite;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel6, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0025F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0025F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.330832F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.330832F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.330832F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0025F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(266, 450);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -96,11 +103,11 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel5.Controls.Add(this.smallerGroupsRadio, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 283);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 264);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(260, 50);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(260, 31);
             this.tableLayoutPanel5.TabIndex = 3;
             // 
             // smallerGroupsRadio
@@ -108,9 +115,9 @@
             this.smallerGroupsRadio.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.smallerGroupsRadio.AutoSize = true;
             this.smallerGroupsRadio.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.smallerGroupsRadio.Location = new System.Drawing.Point(68, 4);
+            this.smallerGroupsRadio.Location = new System.Drawing.Point(68, 3);
             this.smallerGroupsRadio.Name = "smallerGroupsRadio";
-            this.smallerGroupsRadio.Size = new System.Drawing.Size(189, 41);
+            this.smallerGroupsRadio.Size = new System.Drawing.Size(189, 25);
             this.smallerGroupsRadio.TabIndex = 0;
             this.smallerGroupsRadio.TabStop = true;
             this.smallerGroupsRadio.Text = "Allow Smaller Groups";
@@ -129,7 +136,7 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(260, 50);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(260, 31);
             this.tableLayoutPanel4.TabIndex = 2;
             // 
             // biggerGroupsRadio
@@ -138,9 +145,9 @@
             this.biggerGroupsRadio.AutoSize = true;
             this.biggerGroupsRadio.Checked = true;
             this.biggerGroupsRadio.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.biggerGroupsRadio.Location = new System.Drawing.Point(68, 4);
+            this.biggerGroupsRadio.Location = new System.Drawing.Point(68, 3);
             this.biggerGroupsRadio.Name = "biggerGroupsRadio";
-            this.biggerGroupsRadio.Size = new System.Drawing.Size(189, 41);
+            this.biggerGroupsRadio.Size = new System.Drawing.Size(189, 25);
             this.biggerGroupsRadio.TabIndex = 0;
             this.biggerGroupsRadio.TabStop = true;
             this.biggerGroupsRadio.Text = "Allow Bigger Groups";
@@ -222,6 +229,46 @@
             this.groupTextBox.TabIndex = 1;
             this.groupTextBox.TextChanged += new System.EventHandler(this.groupTextBox_TextChanged);
             // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.BackColor = System.Drawing.Color.Honeydew;
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            this.tableLayoutPanel6.Controls.Add(this.separateFriendsCheckBox, 1, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 301);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(260, 31);
+            this.tableLayoutPanel6.TabIndex = 4;
+            // 
+            // separateFriendsCheckBox
+            // 
+            this.separateFriendsCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.separateFriendsCheckBox.AutoSize = true;
+            this.separateFriendsCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.separateFriendsCheckBox.Location = new System.Drawing.Point(68, 3);
+            this.separateFriendsCheckBox.Name = "separateFriendsCheckBox";
+            this.separateFriendsCheckBox.Size = new System.Drawing.Size(189, 25);
+            this.separateFriendsCheckBox.TabIndex = 0;
+            this.separateFriendsCheckBox.Text = "Separate Friends";
+            this.separateFriendsCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Honeydew;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(20, 355);
+            this.button1.Margin = new System.Windows.Forms.Padding(20);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(226, 75);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Create Groups";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // GroupForming
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -243,6 +290,8 @@
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -261,5 +310,8 @@
         private System.Windows.Forms.RadioButton biggerGroupsRadio;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.RadioButton smallerGroupsRadio;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.CheckBox separateFriendsCheckBox;
+        private System.Windows.Forms.Button button1;
     }
 }
