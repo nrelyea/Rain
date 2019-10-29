@@ -121,11 +121,19 @@ namespace Rain
                     studentsCopy.Add(students[i]);
                 }               
 
-                // User is using # of groups as limiter
-                if (groupTextBox.Text.Length > 0)
+                // User is using # of groups as limiter OR if bigger groups are allowed when grouping by student
+                if (groupTextBox.Text.Length > 0 || (studentTextBox.Text.Length > 0 && biggerGroupsRadio.Checked))
                 {
-                    int groupCount = Int32.Parse(groupTextBox.Text);
-                   
+                    int groupCount = 0;
+                    if (groupTextBox.Text.Length > 0)
+                    {
+                        groupCount = Int32.Parse(groupTextBox.Text);
+                    }
+                    else
+                    {
+                        groupCount = students.Count / Int32.Parse(studentTextBox.Text);
+                    }
+                                     
                     // set up empty groups by making n empty lists where n is the number of groups
                     for(int i = 0; i < groupCount; i++)
                     {
@@ -151,9 +159,41 @@ namespace Rain
 
 
                 }
+                // user is using number of students as limiter (ONLY WHEN ALLOWING SMALLER GROUPS)
                 else if (studentTextBox.Text.Length > 0)
                 {
-                    outputLabel.Text = "student";
+                    int studentsPerGroup = Int32.Parse(studentTextBox.Text);
+                    int groupCount = students.Count / studentsPerGroup;
+                    if (students.Count % studentsPerGroup > 0)
+                    {
+                        groupCount++;
+                    }
+
+                    // set up empty groups by making n empty lists where n is the number of groups
+                    for (int i = 0; i < groupCount; i++)
+                    {
+                        groups.Add(new List<string> { });
+                    }
+
+                    // build groups by adding one student to each group, one at a time
+                    int groupIndex = 0;
+                    int studentIndex = 0;
+                    while (studentsCopy.Count > 0)
+                    {
+                        Random rnd = new Random();
+                        int pickedStudent = rnd.Next(0, studentsCopy.Count);
+                        //Console.WriteLine("picked " + studentsCopy[pickedStudent] + " for group " + (groupIndex + 1));
+                        groups[groupIndex].Add(studentsCopy[pickedStudent]);
+                        studentsCopy.RemoveAt(pickedStudent);
+
+                        // increment group, and if necessary, reset index to 0
+                        studentIndex++;
+                        if (studentIndex == studentsPerGroup) {
+                            studentIndex = 0;
+                            groupIndex++;
+                        }
+
+                    }
                 }
 
                 // format output based on formed groups list
@@ -176,7 +216,9 @@ namespace Rain
                 }
                 outputLabel.Text = output;
 
-            }         
+            }
+            
+            // Display result
             outputLabel.Show();
         }
     }
