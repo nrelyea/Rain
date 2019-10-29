@@ -41,11 +41,18 @@ namespace Rain
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+
+        private void formGroupsButton_Click(object sender, EventArgs e)
         {
-            GroupForming form2 = new GroupForming();
-            form2.Show();
+            GroupForming grouping = new GroupForming();
+            grouping.Show();
             this.Hide();
+        }
+
+        private void studentsButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

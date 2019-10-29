@@ -94,7 +94,7 @@ namespace Rain
             }
             else if(groupTextBox.Text.Length > 0 && Int32.Parse(groupTextBox.Text) > students.Count)
             {
-                outputLabel.Text = "ERROR: Group count higher than number of students";
+                outputLabel.Text = "ERROR: Group count higher than total number of students";
                 return false;
             }
             else if(studentTextBox.Text.Length > 0 && Int32.Parse(studentTextBox.Text) > students.Count)
@@ -220,6 +220,19 @@ namespace Rain
             
             // Display result
             outputLabel.Show();
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            MainMenu menu = new MainMenu();
+            menu.Show();
+            this.Hide();
+        }
+
+        private void copyButton_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(outputLabel.Text);
+            System.Windows.Forms.MessageBox.Show("Groups have been copied to Clipboard!");
         }
     }
 }
