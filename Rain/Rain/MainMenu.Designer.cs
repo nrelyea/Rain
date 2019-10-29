@@ -105,7 +105,6 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MainMenu";
             this.Text = "Main Menu";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

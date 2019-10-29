@@ -6,7 +6,9 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Rain
@@ -145,8 +147,7 @@ namespace Rain
                     while(studentsCopy.Count > 0)
                     {
                         // add a random student from remaining pool of students to a group
-                        Random rnd = new Random();
-                        int pickedStudent = rnd.Next(0, studentsCopy.Count);
+                        int pickedStudent = RandomNumber.Between(0, studentsCopy.Count - 1);
                         //Console.WriteLine("picked " + studentsCopy[pickedStudent] + " for group " + (groupIndex + 1));
                         groups[groupIndex].Add(studentsCopy[pickedStudent]);
                         studentsCopy.RemoveAt(pickedStudent);
@@ -180,8 +181,7 @@ namespace Rain
                     int studentIndex = 0;
                     while (studentsCopy.Count > 0)
                     {
-                        Random rnd = new Random();
-                        int pickedStudent = rnd.Next(0, studentsCopy.Count);
+                        int pickedStudent = RandomNumber.Between(0, studentsCopy.Count - 1);
                         //Console.WriteLine("picked " + studentsCopy[pickedStudent] + " for group " + (groupIndex + 1));
                         groups[groupIndex].Add(studentsCopy[pickedStudent]);
                         studentsCopy.RemoveAt(pickedStudent);
@@ -233,6 +233,32 @@ namespace Rain
         {
             Clipboard.SetText(outputLabel.Text);
             System.Windows.Forms.MessageBox.Show("Groups have been copied to Clipboard!");
+        }
+    }
+
+    public static class RandomNumber
+    {
+        private static readonly RNGCryptoServiceProvider _generator = new RNGCryptoServiceProvider();
+
+        public static int Between(int minimumValue, int maximumValue)
+        {
+            byte[] randomNumber = new byte[1];
+
+            _generator.GetBytes(randomNumber);
+
+            double asciiValueOfRandomCharacter = Convert.ToDouble(randomNumber[0]);
+
+            // We are using Math.Max, and substracting 0.00000000001, 
+            // to ensure "multiplier" will always be between 0.0 and .99999999999
+            // Otherwise, it's possible for it to be "1", which causes problems in our rounding.
+            double multiplier = Math.Max(0, (asciiValueOfRandomCharacter / 255d) - 0.00000000001d);
+
+            // We need to add one to the range, to allow for the rounding done with Math.Floor
+            int range = maximumValue - minimumValue + 1;
+
+            double randomValueInRange = Math.Floor(multiplier * range);
+
+            return (int)(minimumValue + randomValueInRange);
         }
     }
 }

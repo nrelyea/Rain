@@ -36,13 +36,6 @@ namespace Rain
             File.WriteAllText(@"c:../../students.json", JsonConvert.SerializeObject(studentList));
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
-
         private void formGroupsButton_Click(object sender, EventArgs e)
         {
             GroupForming grouping = new GroupForming();

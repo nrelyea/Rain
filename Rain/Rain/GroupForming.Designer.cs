@@ -302,11 +302,11 @@
             // 
             this.outputLabel.AutoSize = true;
             this.outputLabel.BackColor = System.Drawing.Color.NavajoWhite;
-            this.outputLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outputLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.outputLabel.Location = new System.Drawing.Point(25, 25);
             this.outputLabel.Margin = new System.Windows.Forms.Padding(25, 25, 0, 0);
             this.outputLabel.Name = "outputLabel";
-            this.outputLabel.Size = new System.Drawing.Size(68, 37);
+            this.outputLabel.Size = new System.Drawing.Size(51, 29);
             this.outputLabel.TabIndex = 0;
             this.outputLabel.Text = "test";
             // 
