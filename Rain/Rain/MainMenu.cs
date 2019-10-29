@@ -45,7 +45,9 @@ namespace Rain
 
         private void studentsButton_Click(object sender, EventArgs e)
         {
-
+            EditStudents edit = new EditStudents();
+            edit.Show();
+            this.Hide();
         }
     }
 }

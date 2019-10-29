@@ -39,6 +39,7 @@
             // studentsButton
             // 
             this.studentsButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.studentsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.studentsButton.Location = new System.Drawing.Point(3, 3);
             this.studentsButton.Name = "studentsButton";
             this.studentsButton.Size = new System.Drawing.Size(511, 217);
@@ -89,6 +90,7 @@
             // formGroupsButton
             // 
             this.formGroupsButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.formGroupsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.formGroupsButton.Location = new System.Drawing.Point(520, 3);
             this.formGroupsButton.Name = "formGroupsButton";
             this.formGroupsButton.Size = new System.Drawing.Size(511, 217);
@@ -104,7 +106,7 @@
             this.ClientSize = new System.Drawing.Size(1034, 447);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MainMenu";
-            this.Text = "Main Menu";
+            this.Text = "Rain | Main Menu";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
