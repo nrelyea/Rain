@@ -10,26 +10,22 @@ using System.Windows.Forms;
 
 namespace Rain
 {
-    public partial class EditStudents : Form
+    public partial class LandingPage : Form
     {
-        public string ClassName { get; set; }
-
-        public EditStudents(string className)
+        public LandingPage()
         {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
-
-            ClassName = className;
         }
 
-        private void EditStudents_Load(object sender, EventArgs e)
+        private void LandingPage_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void backButton_Click(object sender, EventArgs e)
+        private void loadClassButton_Click(object sender, EventArgs e)
         {
-            MainMenu menu = new MainMenu(ClassName);
+            MainMenu menu = new MainMenu("Spanish_1");
             menu.Show();
             this.Hide();
         }

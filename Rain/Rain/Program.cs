@@ -23,18 +23,18 @@ namespace Rain
                 "Cesar Lopez",
                 "Truc Driver",
                 "Mike Hawk",
-                "Andrew Gomez",
                 "Andrew French",
                 "Trinity Matrix",
                 "Ashonty Roberts",
-                "Noah Anderson"
+                "Noah Anderson",
+                "Andrew Gomez"
             };
 
-            File.WriteAllText(@"c:../../students.json", JsonConvert.SerializeObject(studentList));
+            File.WriteAllText(@"students.json", JsonConvert.SerializeObject(studentList));
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainMenu());
+            Application.Run(new LandingPage());
         }        
     }
 }

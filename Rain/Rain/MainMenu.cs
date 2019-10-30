@@ -14,24 +14,26 @@ namespace Rain
 {
     public partial class MainMenu : Form
     {
-        public MainMenu()
+        public string ClassName { get; set; }
+
+        public MainMenu(string className)
         {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
-
-            
+            ClassName = className;
+            Console.WriteLine("Name of class loaded: " + ClassName);
         }
 
         private void formGroupsButton_Click(object sender, EventArgs e)
         {
-            GroupForming grouping = new GroupForming();
+            GroupForming grouping = new GroupForming(ClassName);
             grouping.Show();
             this.Hide();
         }
 
         private void studentsButton_Click(object sender, EventArgs e)
         {
-            EditStudents edit = new EditStudents();
+            EditStudents edit = new EditStudents(ClassName);
             edit.Show();
             this.Hide();
         }

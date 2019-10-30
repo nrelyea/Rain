@@ -15,14 +15,18 @@ namespace Rain
 {
     public partial class GroupForming : Form
     {
+        public string ClassName { get; set; }
+
         public List<string> students;
-        public GroupForming()
+        public GroupForming(string className)
         {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
             outputLabel.Hide();
 
-            string json = File.ReadAllText(@"c:../../students.json");
+            ClassName = className;
+
+            string json = File.ReadAllText(@"students.json");
             students = JsonConvert.DeserializeObject<List<string>>(json);
         }
 
@@ -224,7 +228,7 @@ namespace Rain
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            MainMenu menu = new MainMenu();
+            MainMenu menu = new MainMenu(ClassName);
             menu.Show();
             this.Hide();
         }
