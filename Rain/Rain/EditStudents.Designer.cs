@@ -102,6 +102,7 @@
             this.saveButton.TabIndex = 3;
             this.saveButton.Text = "Save Student List";
             this.saveButton.UseVisualStyleBackColor = false;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // backButton
             // 

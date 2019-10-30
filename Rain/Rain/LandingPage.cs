@@ -25,7 +25,7 @@ namespace Rain
 
         private void loadClassButton_Click(object sender, EventArgs e)
         {
-            MainMenu menu = new MainMenu("Spanish_1");
+            MainMenu menu = new MainMenu("Spanish 1");
             menu.Show();
             this.Hide();
         }
