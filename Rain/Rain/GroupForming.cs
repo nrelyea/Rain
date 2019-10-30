@@ -149,7 +149,7 @@ namespace Rain
                         // add a random student from remaining pool of students to a group
                         int pickedStudent = RandomNumber.Between(0, studentsCopy.Count - 1);
                         //Console.WriteLine("picked " + studentsCopy[pickedStudent] + " for group " + (groupIndex + 1));
-                        groups[groupIndex].Add(studentsCopy[pickedStudent]);
+                        groups[groupIndex].Add(correctName(studentsCopy[pickedStudent],students));
                         studentsCopy.RemoveAt(pickedStudent);
                         
                         // increment group, and if necessary, reset index to 0
@@ -183,7 +183,7 @@ namespace Rain
                     {
                         int pickedStudent = RandomNumber.Between(0, studentsCopy.Count - 1);
                         //Console.WriteLine("picked " + studentsCopy[pickedStudent] + " for group " + (groupIndex + 1));
-                        groups[groupIndex].Add(studentsCopy[pickedStudent]);
+                        groups[groupIndex].Add(correctName(studentsCopy[pickedStudent], students));
                         studentsCopy.RemoveAt(pickedStudent);
 
                         // increment group, and if necessary, reset index to 0
@@ -233,6 +233,42 @@ namespace Rain
         {
             Clipboard.SetText(outputLabel.Text);
             System.Windows.Forms.MessageBox.Show("Groups have been copied to Clipboard!");
+        }
+
+        private string correctName(string name, List<string> students)
+        {
+            for (int i = 0; i < students.Count; i++)
+            {
+                if (firstName(name) == firstName(students[i]) && name != students[i])
+                {
+                    return firstNameLastInitial(name);
+                }
+            }
+            return firstName(name);
+        }
+
+        private string firstName(string str)
+        {
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] == ' ')
+                {
+                    return str.Substring(0, i);
+                }
+            }
+            return str;
+        }
+
+        private string firstNameLastInitial(string str)
+        {
+            for(int i = 0; i < str.Length; i++)
+            {
+                if(str[i] == ' ')
+                {
+                    return str.Substring(0, i+2);
+                }
+            }
+            return str;
         }
     }
 

@@ -16,11 +16,25 @@ namespace Rain
         [STAThread]
         static void Main()
         {
-            
+            List<string> studentList = new List<string>
+            {
+                "Javier Gonzalez",
+                "Yexalan Johnson",
+                "Cesar Lopez",
+                "Truc Driver",
+                "Mike Hawk",
+                "Andrew Gomez",
+                "Andrew French",
+                "Trinity Matrix",
+                "Ashonty Roberts",
+                "Noah Anderson"
+            };
+
+            File.WriteAllText(@"c:../../students.json", JsonConvert.SerializeObject(studentList));
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainMenu());
-        }
+        }        
     }
 }

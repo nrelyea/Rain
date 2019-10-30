@@ -19,21 +19,7 @@ namespace Rain
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
 
-            List<string> studentList = new List<string>
-            {
-                "Javier",
-                "Yexalan",
-                "Cesar",
-                "Truc",
-                "Yung Venice",
-                "Andrew",
-                "Other Andrew",
-                "Trinity",
-                "Ashonty",
-                "Noah"
-            };
-
-            File.WriteAllText(@"c:../../students.json", JsonConvert.SerializeObject(studentList));
+            
         }
 
         private void formGroupsButton_Click(object sender, EventArgs e)

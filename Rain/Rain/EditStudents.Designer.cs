@@ -31,7 +31,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.copyButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
             this.textHoldingPanel = new System.Windows.Forms.TableLayoutPanel();
             this.mainTextBox = new System.Windows.Forms.RichTextBox();
@@ -46,6 +46,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -78,7 +79,7 @@
             this.tableLayoutPanel8.ColumnCount = 1;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Controls.Add(this.copyButton, 0, 1);
+            this.tableLayoutPanel8.Controls.Add(this.saveButton, 0, 1);
             this.tableLayoutPanel8.Controls.Add(this.backButton, 0, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(454, 3);
@@ -89,18 +90,18 @@
             this.tableLayoutPanel8.Size = new System.Drawing.Size(74, 444);
             this.tableLayoutPanel8.TabIndex = 1;
             // 
-            // copyButton
+            // saveButton
             // 
-            this.copyButton.BackColor = System.Drawing.Color.Honeydew;
-            this.copyButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.copyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.copyButton.Location = new System.Drawing.Point(25, 265);
-            this.copyButton.Margin = new System.Windows.Forms.Padding(25);
-            this.copyButton.Name = "copyButton";
-            this.copyButton.Size = new System.Drawing.Size(24, 154);
-            this.copyButton.TabIndex = 3;
-            this.copyButton.Text = "Alt";
-            this.copyButton.UseVisualStyleBackColor = false;
+            this.saveButton.BackColor = System.Drawing.Color.Honeydew;
+            this.saveButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveButton.Location = new System.Drawing.Point(25, 265);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(25);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(24, 154);
+            this.saveButton.TabIndex = 3;
+            this.saveButton.Text = "Save Student List";
+            this.saveButton.UseVisualStyleBackColor = false;
             // 
             // backButton
             // 
@@ -168,7 +169,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
-        private System.Windows.Forms.Button copyButton;
+        private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.TableLayoutPanel textHoldingPanel;
         private System.Windows.Forms.RichTextBox mainTextBox;
