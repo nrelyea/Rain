@@ -16,13 +16,17 @@ namespace Rain
     {
         public string ClassName { get; set; }
 
+        public string savedText;
+
         public EditStudents(string className)
         {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
 
             ClassName = className;
+
             UpdateTextBox();
+            savedText = mainTextBox.Text;
         }
 
         private void UpdateTextBox()
@@ -46,6 +50,16 @@ namespace Rain
 
         private void backButton_Click(object sender, EventArgs e)
         {
+            if(savedText != mainTextBox.Text)
+            {
+                DialogResult dialogResult = MessageBox.Show("Warning: There are unsaved changes to the student list!\n\n" +
+                    "Would you like to save your changes before returning to the Main Menu?", "Warning: Unsaved Changes", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    saveStudents();
+                }
+            }
+
             MainMenu menu = new MainMenu(ClassName);
             menu.Show();
             this.Hide();
@@ -53,18 +67,24 @@ namespace Rain
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            saveStudents();
+        }
+
+        private void saveStudents()
+        {
             try
             {
                 List<string> newStudentList = mainTextBox.Text.Split('\n').ToList();
-                for(int i = 0; i < newStudentList.Count; i++)
+                for (int i = 0; i < newStudentList.Count; i++)
                 {
-                    if(newStudentList[i] == "")
+                    if (newStudentList[i] == "")
                     {
                         newStudentList.RemoveAt(i);
                         i--;
                     }
                 }
                 File.WriteAllText(@ClassName + "_students.json", JsonConvert.SerializeObject(newStudentList));
+                savedText = mainTextBox.Text;
             }
             catch (Exception e2)
             {
