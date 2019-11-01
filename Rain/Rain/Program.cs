@@ -30,11 +30,13 @@ namespace Rain
                 "Andrew Gomez"
             };
 
-            File.WriteAllText(@"Spanish 1_students.json", JsonConvert.SerializeObject(studentList));
+            File.WriteAllText(@"ExampleStudents.json", JsonConvert.SerializeObject(studentList));
+
+            Directory.CreateDirectory("Classes\\Spanish 1");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LandingPage());
-        }        
+        }
     }
 }

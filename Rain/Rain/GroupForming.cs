@@ -26,7 +26,7 @@ namespace Rain
 
             ClassName = className;
 
-            string json = File.ReadAllText(@ClassName + "_students.json");
+            string json = File.ReadAllText(@"Classes\" + ClassName + "\\students.json");
             students = JsonConvert.DeserializeObject<List<string>>(json);
         }
 

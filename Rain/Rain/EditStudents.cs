@@ -33,11 +33,11 @@ namespace Rain
         {
             try
             {
-                string json = File.ReadAllText(@ClassName + "_students.json");
+                string json = File.ReadAllText(@"Classes\" + ClassName + "\\students.json");
                 List<string> studentList = JsonConvert.DeserializeObject<List<string>>(json);
                 mainTextBox.Text = string.Join("\n", studentList.ToArray());
             }
-            catch (Exception e)
+            catch (Exception exc1)
             {
 
             }
@@ -83,10 +83,10 @@ namespace Rain
                         i--;
                     }
                 }
-                File.WriteAllText(@ClassName + "_students.json", JsonConvert.SerializeObject(newStudentList));
+                File.WriteAllText(@"Classes\" + ClassName + "\\students.json", JsonConvert.SerializeObject(newStudentList));
                 savedText = mainTextBox.Text;
             }
-            catch (Exception e2)
+            catch (Exception exc2)
             {
                 System.Windows.Forms.MessageBox.Show("There was an error saving these student names");
             }

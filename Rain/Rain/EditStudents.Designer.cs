@@ -29,18 +29,20 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.backButton = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.textHoldingPanel = new System.Windows.Forms.TableLayoutPanel();
             this.mainTextBox = new System.Windows.Forms.RichTextBox();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.backButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.tableLayoutPanel7.SuspendLayout();
-            this.tableLayoutPanel8.SuspendLayout();
             this.textHoldingPanel.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -50,73 +52,31 @@
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel1);
+            // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.LightGray;
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel7);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 450);
-            this.splitContainer1.SplitterDistance = 265;
+            this.splitContainer1.Size = new System.Drawing.Size(1105, 677);
+            this.splitContainer1.SplitterDistance = 366;
             this.splitContainer1.TabIndex = 3;
             // 
-            // tableLayoutPanel7
+            // tableLayoutPanel1
             // 
-            this.tableLayoutPanel7.ColumnCount = 2;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel8, 1, 0);
-            this.tableLayoutPanel7.Controls.Add(this.textHoldingPanel, 0, 0);
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 1;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(531, 450);
-            this.tableLayoutPanel7.TabIndex = 2;
-            // 
-            // tableLayoutPanel8
-            // 
-            this.tableLayoutPanel8.ColumnCount = 1;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Controls.Add(this.saveButton, 0, 1);
-            this.tableLayoutPanel8.Controls.Add(this.backButton, 0, 0);
-            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(454, 3);
-            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 2;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(74, 444);
-            this.tableLayoutPanel8.TabIndex = 1;
-            // 
-            // saveButton
-            // 
-            this.saveButton.BackColor = System.Drawing.Color.Honeydew;
-            this.saveButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(25, 265);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(25);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(24, 154);
-            this.saveButton.TabIndex = 3;
-            this.saveButton.Text = "Save Student List";
-            this.saveButton.UseVisualStyleBackColor = false;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-            // 
-            // backButton
-            // 
-            this.backButton.BackColor = System.Drawing.Color.Honeydew;
-            this.backButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backButton.Location = new System.Drawing.Point(25, 25);
-            this.backButton.Margin = new System.Windows.Forms.Padding(25);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(24, 60);
-            this.backButton.TabIndex = 2;
-            this.backButton.Text = "Back";
-            this.backButton.UseVisualStyleBackColor = false;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(366, 677);
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // textHoldingPanel
             // 
@@ -131,7 +91,7 @@
             this.textHoldingPanel.Name = "textHoldingPanel";
             this.textHoldingPanel.RowCount = 1;
             this.textHoldingPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.textHoldingPanel.Size = new System.Drawing.Size(391, 390);
+            this.textHoldingPanel.Size = new System.Drawing.Size(564, 617);
             this.textHoldingPanel.TabIndex = 2;
             // 
             // mainTextBox
@@ -142,25 +102,86 @@
             this.mainTextBox.Location = new System.Drawing.Point(11, 11);
             this.mainTextBox.Margin = new System.Windows.Forms.Padding(10);
             this.mainTextBox.Name = "mainTextBox";
-            this.mainTextBox.Size = new System.Drawing.Size(369, 368);
+            this.mainTextBox.Size = new System.Drawing.Size(542, 595);
             this.mainTextBox.TabIndex = 0;
             this.mainTextBox.Text = "";
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 1;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.Controls.Add(this.saveButton, 0, 1);
+            this.tableLayoutPanel8.Controls.Add(this.backButton, 0, 0);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(627, 3);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 2;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(105, 671);
+            this.tableLayoutPanel8.TabIndex = 1;
+            // 
+            // backButton
+            // 
+            this.backButton.BackColor = System.Drawing.Color.Honeydew;
+            this.backButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.Location = new System.Drawing.Point(25, 25);
+            this.backButton.Margin = new System.Windows.Forms.Padding(25);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(55, 60);
+            this.backButton.TabIndex = 2;
+            this.backButton.Text = "Back";
+            this.backButton.UseVisualStyleBackColor = false;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
+            // saveButton
+            // 
+            this.saveButton.BackColor = System.Drawing.Color.Honeydew;
+            this.saveButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveButton.Location = new System.Drawing.Point(25, 492);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(25);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(55, 154);
+            this.saveButton.TabIndex = 3;
+            this.saveButton.Text = "Save Student List";
+            this.saveButton.UseVisualStyleBackColor = false;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel8, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.textHoldingPanel, 0, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(735, 677);
+            this.tableLayoutPanel7.TabIndex = 2;
             // 
             // EditStudents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1105, 677);
             this.Controls.Add(this.splitContainer1);
             this.Name = "EditStudents";
             this.Text = "Rain | Edit Students";
             this.Load += new System.EventHandler(this.EditStudents_Load);
+            this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.tableLayoutPanel7.ResumeLayout(false);
-            this.tableLayoutPanel8.ResumeLayout(false);
             this.textHoldingPanel.ResumeLayout(false);
+            this.tableLayoutPanel8.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -168,6 +189,7 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Button saveButton;

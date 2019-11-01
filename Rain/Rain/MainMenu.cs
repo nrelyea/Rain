@@ -21,7 +21,7 @@ namespace Rain
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
             ClassName = className;
-            Console.WriteLine("Name of class loaded: " + ClassName);
+            Console.WriteLine("Name of class loaded: " + ClassName);           
         }
 
         private void formGroupsButton_Click(object sender, EventArgs e)
@@ -35,6 +35,13 @@ namespace Rain
         {
             EditStudents edit = new EditStudents(ClassName);
             edit.Show();
+            this.Hide();
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            LandingPage page = new LandingPage();
+            page.Show();
             this.Hide();
         }
     }
