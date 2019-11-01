@@ -58,15 +58,33 @@ namespace Rain
 
             while (true)
             {
+                // prompt user to enter a name for their new class
                 string newClass = Interaction.InputBox("Create a new class!\n\nUse the space below to name your new class.", 
                                                        "Class Creation", defaultString);
+
+                // if a class name was entered, begin processing it
                 if (newClass.Length > 0)
                 {
+                    // if class name is valid, proceed
                     if (validClassName(newClass))
                     {
-                        Console.WriteLine("Created New Class: " + newClass);
-                        break;
+                        // if class name is already taken, let the user know, and then again present them with 
+                        //the option to change the class name to make it valid and retry
+                        if (classAlreadyExists(newClass))
+                        {
+                            MessageBox.Show("ERROR: Invalid Class Name!\n\n " +
+                                        "The class name you have entered already exists!\n\n" +
+                                        "Either enter a different class name, or first delete the current class that shares this name");
+                            defaultString = newClass;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Created New Class: " + newClass);
+                            break;
+                        }                       
                     }
+                    // if class name is invalid, let the user know, and then again present them with 
+                    //the option to change the class name to make it valid and retry
                     else
                     {
                         MessageBox.Show("ERROR: Invalid Class Name!\n\n " +
@@ -86,6 +104,7 @@ namespace Rain
         // determines of class name user has entered is valid, as it will be the name of a folder
         private bool validClassName(string name)
         {
+            // list of special characters that are allowed in a class name
             List<char> validChars = new List<char> { ' ', '_', '-', '\''};
 
             for(int i = 0; i < name.Length; i++)
@@ -99,6 +118,18 @@ namespace Rain
                 }
             }
             return true;
+        }
+
+        private bool classAlreadyExists(string name)
+        {
+            for (int i = 0; i < chooseClassDropDown.Items.Count; i++)
+            {
+                if(name == chooseClassDropDown.GetItemText(chooseClassDropDown.Items[i])){
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
