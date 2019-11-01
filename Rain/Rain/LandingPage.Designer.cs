@@ -30,12 +30,12 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.loadClassButton = new System.Windows.Forms.Button();
-            this.chooseClassDropDown = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.selectClassLabel = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.loadClassButton = new System.Windows.Forms.Button();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.chooseClassDropDown = new System.Windows.Forms.ComboBox();
+            this.selectClassLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -81,6 +81,30 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(264, 450);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Honeydew;
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(3, 377);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(258, 70);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Delete Class";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Honeydew;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(3, 303);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(258, 68);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "New Class";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // loadClassButton
             // 
             this.loadClassButton.BackColor = System.Drawing.Color.Thistle;
@@ -93,6 +117,22 @@
             this.loadClassButton.Text = "Load Class";
             this.loadClassButton.UseVisualStyleBackColor = false;
             this.loadClassButton.Click += new System.EventHandler(this.loadClassButton_Click);
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.Honeydew;
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.chooseClassDropDown, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.selectClassLabel, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(258, 144);
+            this.tableLayoutPanel2.TabIndex = 2;
             // 
             // chooseClassDropDown
             // 
@@ -139,22 +179,6 @@
             this.chooseClassDropDown.Size = new System.Drawing.Size(252, 45);
             this.chooseClassDropDown.TabIndex = 1;
             // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.BackColor = System.Drawing.Color.Honeydew;
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.chooseClassDropDown, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.selectClassLabel, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(258, 144);
-            this.tableLayoutPanel2.TabIndex = 2;
-            // 
             // selectClassLabel
             // 
             this.selectClassLabel.BackColor = System.Drawing.Color.Honeydew;
@@ -166,30 +190,6 @@
             this.selectClassLabel.TabIndex = 2;
             this.selectClassLabel.Text = "Select a Class\r\n↓\r\n\r\n";
             this.selectClassLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Honeydew;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(3, 303);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(258, 68);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "New Class";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Honeydew;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(3, 377);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(258, 70);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Delete Class";
-            this.button2.UseVisualStyleBackColor = false;
             // 
             // LandingPage
             // 
