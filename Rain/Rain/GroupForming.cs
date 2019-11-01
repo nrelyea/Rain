@@ -32,6 +32,28 @@ namespace Rain
 
         public bool canChange = true;
 
+        // buggy attempt to handle issues loading students when directory is not set up correctly
+        // hoping to handle this in other ways to prevent this error from happening to begin with
+        private void loadStudents()
+        {
+            /*
+            try
+            {
+                string json = File.ReadAllText(@"Classes\" + ClassName + "\\students.json");
+                students = JsonConvert.DeserializeObject<List<string>>(json);
+            }
+            catch(Exception exc)
+            {
+                MessageBox.Show("ERROR: This class appears to have not been set up correctly\n"
+                                , "ERROR: Invalid Class Data");
+                MainMenu menu = new MainMenu(ClassName);
+                menu.Show();
+                this.Close();
+            }
+            */
+            
+        }
+
         private void Form2_Load(object sender, EventArgs e)
         {
 
