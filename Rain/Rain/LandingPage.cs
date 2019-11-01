@@ -169,7 +169,12 @@ namespace Rain
                         }
                         else
                         {
-                            Console.WriteLine("Deleting " + classToDelete);
+                            Directory.Delete("Classes\\" + classToDelete, true);
+                            updateDropDownFields();
+
+                            MessageBox.Show("The class '" + classToDelete + "' has been deleted.");
+
+                            Console.WriteLine(classToDelete + " has been deleted");
                             break;
                         }
                     }
