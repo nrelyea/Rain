@@ -136,44 +136,11 @@
             // 
             // chooseClassDropDown
             // 
+            this.chooseClassDropDown.BackColor = System.Drawing.Color.White;
             this.chooseClassDropDown.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.chooseClassDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.chooseClassDropDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chooseClassDropDown.FormattingEnabled = true;
-            this.chooseClassDropDown.Items.AddRange(new object[] {
-            "Memes",
-            "Dank Memes",
-            "Even Danker Memes",
-            "Bad Memes",
-            "Worse Memes",
-            "The WORST Memes",
-            "Ifunny memes",
-            "Memes",
-            "Dank Memes",
-            "Even Danker Memes",
-            "Bad Memes",
-            "Worse Memes",
-            "The WORST Memes",
-            "Ifunny memes",
-            "Memes",
-            "Dank Memes",
-            "Even Danker Memes",
-            "Bad Memes",
-            "Worse Memes",
-            "The WORST Memes",
-            "Ifunny memes",
-            "Memes",
-            "Dank Memes",
-            "Even Danker Memes",
-            "Bad Memes",
-            "Worse Memes",
-            "The WORST Memes",
-            "Ifunny memes",
-            "Memes",
-            "Dank Memes",
-            "Even Danker Memes",
-            "Bad Memes",
-            "Worse Memes",
-            "The WORST Memes"});
             this.chooseClassDropDown.Location = new System.Drawing.Point(3, 118);
             this.chooseClassDropDown.Name = "chooseClassDropDown";
             this.chooseClassDropDown.Size = new System.Drawing.Size(252, 45);
