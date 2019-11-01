@@ -19,24 +19,26 @@ namespace Rain
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
 
-            assignDropDownFields();
+            updateDropDownFields();
         }
 
-        private void assignDropDownFields()
+        private void updateDropDownFields()
         {
-            var directories = Directory.GetDirectories("Classes");           
+            var directories = Directory.GetDirectories("Classes");
+
+            selectClassDropDown.Items.Clear();
 
             // for each directory found in the Classes folder, identify its name and add it to dropdown menu
             for(int i = 0; i < directories.Length; i++)
             {
                 directories[i] = directories[i].Substring(8);
-                chooseClassDropDown.Items.Add(directories[i]);
+                selectClassDropDown.Items.Add(directories[i]);
             }
 
             // set text shown in drop down by default to first class in folder
             if (directories.Length > 0)
             {
-                chooseClassDropDown.Text = directories[0];
+                selectClassDropDown.Text = directories[0];
             }
         }
 
@@ -47,7 +49,7 @@ namespace Rain
 
         private void loadClassButton_Click(object sender, EventArgs e)
         {
-            MainMenu menu = new MainMenu(chooseClassDropDown.Text);
+            MainMenu menu = new MainMenu(selectClassDropDown.Text);
             menu.Show();
             this.Hide();
         }
@@ -77,8 +79,21 @@ namespace Rain
                                         "Either enter a different class name, or first delete the current class that shares this name");
                             defaultString = newClass;
                         }
+                        // otherwise, create the new class
                         else
                         {
+                            Directory.CreateDirectory("Classes\\" + newClass);
+                            updateDropDownFields();
+
+                            DialogResult dialogResult = MessageBox.Show("Your new class '" + newClass + "' has been created!\n\n" +
+                                "Would you like to start setting up this class now?", "'"+ newClass + "' created!", MessageBoxButtons.YesNo);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                MainMenu menu = new MainMenu(newClass);
+                                menu.Show();
+                                this.Hide();
+                            }
+
                             Console.WriteLine("Created New Class: " + newClass);
                             break;
                         }                       
@@ -122,14 +137,49 @@ namespace Rain
 
         private bool classAlreadyExists(string name)
         {
-            for (int i = 0; i < chooseClassDropDown.Items.Count; i++)
+            for (int i = 0; i < selectClassDropDown.Items.Count; i++)
             {
-                if(name == chooseClassDropDown.GetItemText(chooseClassDropDown.Items[i])){
+                if(name == selectClassDropDown.GetItemText(selectClassDropDown.Items[i])){
                     return true;
                 }
             }
 
             return false;
+        }
+
+        private void deleteClassButton_Click(object sender, EventArgs e)
+        {
+            string classToDelete = selectClassDropDown.Text;
+
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete '" 
+                + classToDelete + "' and all of its contents?", 
+                "Confirm Deletion of " + classToDelete, MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                while (true)
+                {
+                    string enteredName = Interaction.InputBox("\nUse the box below to type '" + classToDelete +
+                    "' to confirm the deletion of this class", "Confirm Deletion of " + classToDelete, "");
+                    if(enteredName.Length > 0)
+                    {
+                        if (enteredName != classToDelete)
+                        {
+                            MessageBox.Show("The class name you just typed did not match the name of the class" +
+                                " you are trying to delete.\n\nPlease re-enter the class name");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Deleting " + classToDelete);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    
+                }               
+            }
         }
     }
 }

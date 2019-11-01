@@ -34,7 +34,7 @@
             this.newClassButton = new System.Windows.Forms.Button();
             this.loadClassButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.chooseClassDropDown = new System.Windows.Forms.ComboBox();
+            this.selectClassDropDown = new System.Windows.Forms.ComboBox();
             this.selectClassLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -92,6 +92,7 @@
             this.deleteClassButton.TabIndex = 4;
             this.deleteClassButton.Text = "Delete Class";
             this.deleteClassButton.UseVisualStyleBackColor = false;
+            this.deleteClassButton.Click += new System.EventHandler(this.deleteClassButton_Click);
             // 
             // newClassButton
             // 
@@ -124,7 +125,7 @@
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.Honeydew;
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.chooseClassDropDown, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.selectClassDropDown, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.selectClassLabel, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
@@ -135,17 +136,17 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(258, 144);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
-            // chooseClassDropDown
+            // selectClassDropDown
             // 
-            this.chooseClassDropDown.BackColor = System.Drawing.Color.White;
-            this.chooseClassDropDown.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.chooseClassDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.chooseClassDropDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chooseClassDropDown.FormattingEnabled = true;
-            this.chooseClassDropDown.Location = new System.Drawing.Point(3, 118);
-            this.chooseClassDropDown.Name = "chooseClassDropDown";
-            this.chooseClassDropDown.Size = new System.Drawing.Size(252, 45);
-            this.chooseClassDropDown.TabIndex = 1;
+            this.selectClassDropDown.BackColor = System.Drawing.Color.White;
+            this.selectClassDropDown.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.selectClassDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.selectClassDropDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectClassDropDown.FormattingEnabled = true;
+            this.selectClassDropDown.Location = new System.Drawing.Point(3, 118);
+            this.selectClassDropDown.Name = "selectClassDropDown";
+            this.selectClassDropDown.Size = new System.Drawing.Size(252, 45);
+            this.selectClassDropDown.TabIndex = 1;
             // 
             // selectClassLabel
             // 
@@ -182,7 +183,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button loadClassButton;
-        private System.Windows.Forms.ComboBox chooseClassDropDown;
+        private System.Windows.Forms.ComboBox selectClassDropDown;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label selectClassLabel;
         private System.Windows.Forms.Button deleteClassButton;
