@@ -79,10 +79,11 @@ namespace Rain
                                         "Either enter a different class name, or first delete the current class that shares this name");
                             defaultString = newClass;
                         }
-                        // otherwise, create the new class
+                        // otherwise, create the new class      MINOR BUG: if class name is only spaces, nothing will happen
                         else
                         {
                             Directory.CreateDirectory("Classes\\" + newClass);
+                            Directory.CreateDirectory("Classes\\" + newClass + "\\Lessons");
                             updateDropDownFields();
 
                             DialogResult dialogResult = MessageBox.Show("Your new class '" + newClass + "' has been created!\n\n" +
@@ -94,7 +95,7 @@ namespace Rain
                                 this.Hide();
                             }
 
-                            Console.WriteLine("Created New Class: " + newClass);
+                            //Console.WriteLine("Created New Class: " + newClass);
                             break;
                         }                       
                     }
@@ -174,7 +175,7 @@ namespace Rain
 
                             MessageBox.Show("The class '" + classToDelete + "' has been deleted.");
 
-                            Console.WriteLine(classToDelete + " has been deleted");
+                            //Console.WriteLine(classToDelete + " has been deleted");
                             break;
                         }
                     }

@@ -21,7 +21,35 @@ namespace Rain
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
             ClassName = className;
-            Console.WriteLine("Name of class loaded: " + ClassName);           
+            //Console.WriteLine("Name of class loaded: " + ClassName);
+
+            // disable certain options if student list is empty / doesn't exist
+            if (!canLoadStudents())
+            {
+                formGroupsButton.Hide();
+            }
+        }
+
+        // returns true if students.json file exists and contains at least one student
+        private bool canLoadStudents()
+        {          
+            try
+            {
+                string json = File.ReadAllText(@"Classes\" + ClassName + "\\students.json");
+                List<string> studentList = JsonConvert.DeserializeObject<List<string>>(json);
+                if(studentList.Count > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception exc)
+            {
+                return false;
+            }           
         }
 
         private void formGroupsButton_Click(object sender, EventArgs e)
@@ -42,6 +70,13 @@ namespace Rain
         {
             LandingPage page = new LandingPage();
             page.Show();
+            this.Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            LessonPlanning plan = new LessonPlanning(ClassName);
+            plan.Show();
             this.Hide();
         }
     }

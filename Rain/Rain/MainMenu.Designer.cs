@@ -30,11 +30,11 @@
         {
             this.studentsButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.formGroupsButton = new System.Windows.Forms.Button();
-            this.backButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.backButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +72,18 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1034, 447);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(520, 248);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(511, 196);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "TEST PAGE";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // button4
             // 
             this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -81,16 +93,6 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "button4";
             this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.Location = new System.Drawing.Point(520, 248);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(511, 196);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // formGroupsButton
             // 
@@ -103,20 +105,6 @@
             this.formGroupsButton.Text = "Form Groups";
             this.formGroupsButton.UseVisualStyleBackColor = true;
             this.formGroupsButton.Click += new System.EventHandler(this.formGroupsButton_Click);
-            // 
-            // backButton
-            // 
-            this.backButton.BackColor = System.Drawing.Color.Honeydew;
-            this.backButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backButton.Location = new System.Drawing.Point(316, 10);
-            this.backButton.Margin = new System.Windows.Forms.Padding(10);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(185, 18);
-            this.backButton.TabIndex = 4;
-            this.backButton.Text = "Return to Class Selection";
-            this.backButton.UseVisualStyleBackColor = false;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -131,6 +119,20 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(511, 38);
             this.tableLayoutPanel2.TabIndex = 5;
+            // 
+            // backButton
+            // 
+            this.backButton.BackColor = System.Drawing.Color.Honeydew;
+            this.backButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.Location = new System.Drawing.Point(316, 10);
+            this.backButton.Margin = new System.Windows.Forms.Padding(10);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(185, 18);
+            this.backButton.TabIndex = 4;
+            this.backButton.Text = "Return to Class Selection";
+            this.backButton.UseVisualStyleBackColor = false;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // MainMenu
             // 
