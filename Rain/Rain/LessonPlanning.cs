@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,9 +18,11 @@ namespace Rain
         public LessonPlanning(string className)
         {
             InitializeComponent();
+
             WindowState = FormWindowState.Maximized;
 
             ClassName = className;
+
         }
 
         private void LessonPlanning_Load(object sender, EventArgs e)
@@ -66,5 +69,40 @@ namespace Rain
                 button1.Margin = new Padding(newX, newY, 0, 0);
             }         
         }
+
+        /*
+        private void AddRowToPanel(string txt)
+        {
+            //get a reference to the previous existent row
+            RowStyle temp = planPanel.RowStyles[planPanel.RowCount - 1];
+            //increase panel rows count by one
+            planPanel.RowCount++;
+            //add a new RowStyle as a copy of the previous one
+            planPanel.RowStyles.Add(new RowStyle(temp.SizeType, temp.Height));
+            //define label
+            Label newLabel = new Label() {
+                Text = txt,
+                Anchor = AnchorStyles.None
+            };
+            //add the control
+            planPanel.Controls.Add(newLabel, 0, planPanel.RowCount - 1);           
+        }
+
+        private void appendPlanEnding()
+        {
+            //get a reference to the previous existent row
+            RowStyle temp = planPanel.RowStyles[planPanel.RowCount - 1];
+            //increase panel rows count by one
+            planPanel.RowCount++;
+            //add a new RowStyle as a copy of the previous one
+            planPanel.RowStyles.Add(new RowStyle(temp.SizeType, temp.Height));
+            //define button
+            Button filler = new Button();
+            filler.Dock = DockStyle.Fill;
+            filler.BackColor = Color.Black;
+            //add button to panel
+            planPanel.Controls.Add(filler, 0, planPanel.RowCount);
+        }
+        */
     }
 }
