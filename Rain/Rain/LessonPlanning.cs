@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -69,6 +72,70 @@ namespace Rain
                 button1.Margin = new Padding(newX, newY, 0, 0);
             }         
         }
+
+        private void newClassButton_Click(object sender, EventArgs e)
+        {
+            //string defaultString = "";
+            //string newLesson = Interaction.InputBox("Create a new lesson!\n\nUse the space below to name your new lesson.",
+            //                                           "Lesson Creation", defaultString);
+
+            testCreateLesson();
+
+            NewLessonPrompt prompt = new NewLessonPrompt(ClassName);
+            prompt.Show();
+            //this.Hide();
+        }
+
+
+
+
+
+
+        private void testCreateLesson()
+        {
+            string lessonName = "lesson 1";
+            int timeLimit = 55;
+
+            JArray activities = new JArray();
+
+            JObject act1 = new JObject(
+                //new JProperty("name", (string)lessonName),
+                new JProperty("name", (string)"Warmup"),
+                new JProperty("time", (double)5.0),
+                new JProperty("color", (string)"Green")
+            );
+            activities.Add(act1);
+
+            JObject act2 = new JObject(
+                //new JProperty("name", (string)lessonName),
+                new JProperty("name", (string)"Powerpoint"),
+                new JProperty("time", (double)20.0),
+                new JProperty("color", (string)"Blue")
+            );
+            activities.Add(act2);
+
+            JObject act3 = new JObject(
+                //new JProperty("name", (string)lessonName),
+                new JProperty("name", (string)"Quiz"),
+                new JProperty("time", (double)10.0),
+                new JProperty("color", (string)"Red")
+            );
+            activities.Add(act3);
+
+
+
+            JObject lesson = new JObject(
+                //new JProperty("name", (string)lessonName),
+                new JProperty("timeLimit", (int)timeLimit),
+                new JProperty("activities", activities)
+            );
+
+            File.WriteAllText(@"Classes\\" + ClassName + "\\Lessons\\" + lessonName + ".json", lesson.ToString());
+        }
+
+
+
+
 
         /*
         private void AddRowToPanel(string txt)

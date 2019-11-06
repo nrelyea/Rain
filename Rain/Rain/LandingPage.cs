@@ -39,7 +39,17 @@ namespace Rain
             if (directories.Length > 0)
             {
                 selectClassDropDown.Text = directories[0];
+
+                loadClassButton.Show();
+                deleteClassButton.Show();
             }
+            else
+            {
+                loadClassButton.Hide();
+                deleteClassButton.Hide();
+            }
+
+
         }
 
         private void LandingPage_Load(object sender, EventArgs e)

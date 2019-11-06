@@ -111,6 +111,7 @@
             this.newClassButton.TabIndex = 3;
             this.newClassButton.Text = "New Lesson";
             this.newClassButton.UseVisualStyleBackColor = false;
+            this.newClassButton.Click += new System.EventHandler(this.newClassButton_Click);
             // 
             // tableLayoutPanel2
             // 
