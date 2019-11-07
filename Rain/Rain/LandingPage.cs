@@ -46,7 +46,7 @@ namespace Rain
             else
             {
                 loadClassButton.Hide();
-                deleteClassButton.Hide();
+                deleteClassButton.Hide();   
             }
 
 

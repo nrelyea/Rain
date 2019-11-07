@@ -30,7 +30,7 @@ namespace Rain
 
         private void LessonPlanning_Load(object sender, EventArgs e)
         {
-
+            updateDropDownFields();
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -73,27 +73,85 @@ namespace Rain
             }         
         }
 
-        private void newClassButton_Click(object sender, EventArgs e)
+        private void newLessonButton_Click(object sender, EventArgs e)
         {
-            //string defaultString = "";
-            //string newLesson = Interaction.InputBox("Create a new lesson!\n\nUse the space below to name your new lesson.",
-            //                                           "Lesson Creation", defaultString);
+            string lessonName;
+            int lessonTimeLimit;
 
-            testCreateLesson();
+            using (NewLessonPrompt prompt = new NewLessonPrompt(ClassName))
+            {
+                this.Enabled = false;
+                prompt.ShowDialog();
+                this.Enabled = true;
 
-            NewLessonPrompt prompt = new NewLessonPrompt(ClassName);
-            prompt.Show();
-            //this.Hide();
+                // escape (do nothing) if user X'd out of Lesson Creation prompt (lessonTimeLimit returned 0)
+                if(prompt.getLessonTimeLimit() <= 0) { return; }
+
+                lessonName = prompt.getLessonName();
+                lessonTimeLimit = prompt.getLessonTimeLimit();
+            }
+
+            MessageBox.Show("Your new lesson '" + lessonName + "' has been created!\n\n" +
+                            "Use the tools provided to modify and add to it!");
+
+            Console.WriteLine("name: " + lessonName +
+                                  "\ntime limit: " + lessonTimeLimit);
+
+
+
+
         }
 
 
 
+        // update drop down fields to correctly represent current lessons in this class
+        private void updateDropDownFields()
+        {
+            selectLessonDropDown.Items.Clear();
+
+            // get all lesson file paths from Lessons directory and put them in an array
+            string[] pathArray = Directory.GetFiles(@"Classes\\" + ClassName + "\\Lessons\\", "*.json",
+                                                     SearchOption.TopDirectoryOnly);
+
+            // shorten all file paths to just lesson names and add them to the dropdown
+            for(int i = 0; i < pathArray.Length; i++)
+            {
+                selectLessonDropDown.Items.Add(pathToFile(pathArray[i]));
+            }
+
+            if(pathArray.Length > 0)
+            {
+                selectLessonDropDown.Text = pathToFile(pathArray[0]);
+                deleteLessonButton.Show();
+            }
+            else
+            {
+                deleteLessonButton.Hide();
+            }
 
 
+        }
+
+        // converts an entire file path (i.e. \Classes\Lessons\first day.json) to just file name (first day)
+        private string pathToFile(string path)
+        {
+            for(int i = path.Length - 1; i >= 0; i--)
+            {
+                if(path[i] == '\\')
+                {
+                    path = path.Substring(i+1);
+                    path = path.Substring(0, path.Length - 5);
+                    break;
+                }
+            }
+
+            return path;
+        }
 
         private void testCreateLesson()
         {
             string lessonName = "lesson 1";
+            string description = "the first lesson!";
             int timeLimit = 55;
 
             JArray activities = new JArray();
@@ -125,7 +183,7 @@ namespace Rain
 
 
             JObject lesson = new JObject(
-                //new JProperty("name", (string)lessonName),
+                new JProperty("description", (string)description),
                 new JProperty("timeLimit", (int)timeLimit),
                 new JProperty("activities", activities)
             );

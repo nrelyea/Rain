@@ -108,6 +108,7 @@
             this.createLessonButton.TabIndex = 0;
             this.createLessonButton.Text = "Create Lesson";
             this.createLessonButton.UseVisualStyleBackColor = false;
+            this.createLessonButton.Click += new System.EventHandler(this.createLessonButton_Click);
             // 
             // tableLayoutPanel2
             // 
