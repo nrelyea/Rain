@@ -99,6 +99,7 @@
             this.deleteLessonButton.TabIndex = 4;
             this.deleteLessonButton.Text = "Delete Lesson";
             this.deleteLessonButton.UseVisualStyleBackColor = false;
+            this.deleteLessonButton.Click += new System.EventHandler(this.deleteLessonButton_Click);
             // 
             // newLessonButton
             // 

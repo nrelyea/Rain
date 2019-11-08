@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,9 +67,21 @@ namespace Rain
 
         }
 
-        // NEEDS TO BE DEFINED
+        
         private bool lessonAlreadyExists(string str)
         {
+            // get all lesson file paths from Lessons directory and put them in an array
+            string[] pathArray = Directory.GetFiles(@"Classes\" + ClassName + "\\Lessons\\", "*.json",
+                                                     SearchOption.TopDirectoryOnly);
+
+            foreach (string path in pathArray)
+            {
+                if(path == "Classes\\" + ClassName + "\\Lessons\\" + str + ".json")
+                {
+                    return true;
+                }
+            }
+
             return false;
         }
 

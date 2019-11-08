@@ -91,13 +91,22 @@ namespace Rain
                 lessonTimeLimit = prompt.getLessonTimeLimit();
             }
 
+            JObject lessonObj = new JObject(
+                new JProperty("description", (string)""),
+                new JProperty("timeLimit", (int)lessonTimeLimit),
+                new JProperty("activities", new JArray())
+            );
+
+            File.WriteAllText(@"Classes\\" + ClassName + "\\Lessons\\" + lessonName + ".json", lessonObj.ToString());
+
+
             MessageBox.Show("Your new lesson '" + lessonName + "' has been created!\n\n" +
                             "Use the tools provided to modify and add to it!");
 
             Console.WriteLine("name: " + lessonName +
                                   "\ntime limit: " + lessonTimeLimit);
 
-
+            updateDropDownFields();
 
 
         }
@@ -189,6 +198,45 @@ namespace Rain
             );
 
             File.WriteAllText(@"Classes\\" + ClassName + "\\Lessons\\" + lessonName + ".json", lesson.ToString());
+        }
+
+        private void deleteLessonButton_Click(object sender, EventArgs e)
+        {
+            string lessonToDelete = selectLessonDropDown.Text;
+
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete '"
+                + lessonToDelete + "' and all of its contents?",
+                "Confirm Deletion of " + lessonToDelete, MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                while (true)
+                {
+                    string enteredName = Interaction.InputBox("\nUse the box below to type '" + lessonToDelete +
+                    "' to confirm the deletion of this lesson", "Confirm Deletion of " + lessonToDelete, "");
+                    if (enteredName.Length > 0)
+                    {
+                        if (enteredName != lessonToDelete)
+                        {
+                            MessageBox.Show("The lesson name you just typed did not match the name of the lesson" +
+                                " you are trying to delete.\n\nPlease re-enter the lesson name");
+                        }
+                        else
+                        {
+                            File.Delete("Classes\\" + ClassName + "\\Lessons\\" + lessonToDelete + ".json");                            
+                            updateDropDownFields();
+
+                            MessageBox.Show("The lesson '" + lessonToDelete + "' has been deleted.");
+
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                }
+            }
         }
 
 
