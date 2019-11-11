@@ -37,8 +37,9 @@
             this.selectLessonLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.saveButton = new System.Windows.Forms.Button();
+            this.newActivityButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
+            this.activitiesPanel = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -48,6 +49,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
+            this.activitiesPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -156,17 +158,17 @@
             // 
             // tableLayoutPanel7
             // 
+            this.tableLayoutPanel7.BackColor = System.Drawing.Color.LightSkyBlue;
             this.tableLayoutPanel7.ColumnCount = 2;
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel8, 1, 0);
-            this.tableLayoutPanel7.Controls.Add(this.button1, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.activitiesPanel, 0, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel7.Size = new System.Drawing.Size(532, 450);
             this.tableLayoutPanel7.TabIndex = 2;
             // 
@@ -175,7 +177,7 @@
             this.tableLayoutPanel8.ColumnCount = 1;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Controls.Add(this.saveButton, 0, 1);
+            this.tableLayoutPanel8.Controls.Add(this.newActivityButton, 0, 1);
             this.tableLayoutPanel8.Controls.Add(this.backButton, 0, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(455, 3);
@@ -186,18 +188,19 @@
             this.tableLayoutPanel8.Size = new System.Drawing.Size(74, 444);
             this.tableLayoutPanel8.TabIndex = 1;
             // 
-            // saveButton
+            // newActivityButton
             // 
-            this.saveButton.BackColor = System.Drawing.Color.Honeydew;
-            this.saveButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(25, 265);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(25);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(24, 154);
-            this.saveButton.TabIndex = 3;
-            this.saveButton.Text = "Save Lesson";
-            this.saveButton.UseVisualStyleBackColor = false;
+            this.newActivityButton.BackColor = System.Drawing.Color.Honeydew;
+            this.newActivityButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.newActivityButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newActivityButton.Location = new System.Drawing.Point(25, 265);
+            this.newActivityButton.Margin = new System.Windows.Forms.Padding(25);
+            this.newActivityButton.Name = "newActivityButton";
+            this.newActivityButton.Size = new System.Drawing.Size(24, 154);
+            this.newActivityButton.TabIndex = 3;
+            this.newActivityButton.Text = "New Activity";
+            this.newActivityButton.UseVisualStyleBackColor = false;
+            this.newActivityButton.Click += new System.EventHandler(this.newActivityButton_Click);
             // 
             // backButton
             // 
@@ -213,12 +216,23 @@
             this.backButton.UseVisualStyleBackColor = false;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
+            // activitiesPanel
+            // 
+            this.activitiesPanel.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.activitiesPanel.Controls.Add(this.button1);
+            this.activitiesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.activitiesPanel.Location = new System.Drawing.Point(10, 10);
+            this.activitiesPanel.Margin = new System.Windows.Forms.Padding(10);
+            this.activitiesPanel.Name = "activitiesPanel";
+            this.activitiesPanel.Size = new System.Drawing.Size(432, 430);
+            this.activitiesPanel.TabIndex = 3;
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Location = new System.Drawing.Point(63, 33);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(162, 85);
+            this.button1.Size = new System.Drawing.Size(118, 71);
             this.button1.TabIndex = 2;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -242,6 +256,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
+            this.activitiesPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -251,7 +266,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
-        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button newActivityButton;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -260,5 +275,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.ComboBox selectLessonDropDown;
         private System.Windows.Forms.Label selectLessonLabel;
+        private System.Windows.Forms.Panel activitiesPanel;
     }
 }

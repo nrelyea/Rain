@@ -69,8 +69,12 @@ namespace Rain
                 int newX = e.X + button1.Left - MouseDownLocation.X;
                 int newY = e.Y + button1.Top - MouseDownLocation.Y;
 
-                button1.Margin = new Padding(newX, newY, 0, 0);
-            }         
+                //button1.Margin = new Padding(newX, newY, 0, 0);
+                button1.Location = new Point(newX, newY);
+
+                Console.WriteLine("eh");
+
+            }
         }
 
         private void newLessonButton_Click(object sender, EventArgs e)
@@ -99,15 +103,10 @@ namespace Rain
 
             File.WriteAllText(@"Classes\\" + ClassName + "\\Lessons\\" + lessonName + ".json", lessonObj.ToString());
 
+            updateDropDownFields();
 
             MessageBox.Show("Your new lesson '" + lessonName + "' has been created!\n\n" +
                             "Use the tools provided to modify and add to it!");
-
-            Console.WriteLine("name: " + lessonName +
-                                  "\ntime limit: " + lessonTimeLimit);
-
-            updateDropDownFields();
-
 
         }
 
@@ -222,7 +221,7 @@ namespace Rain
                         }
                         else
                         {
-                            File.Delete("Classes\\" + ClassName + "\\Lessons\\" + lessonToDelete + ".json");                            
+                            File.Delete(getLessonPath(lessonToDelete));                            
                             updateDropDownFields();
 
                             MessageBox.Show("The lesson '" + lessonToDelete + "' has been deleted.");
@@ -239,43 +238,32 @@ namespace Rain
             }
         }
 
-
-
-
-
-        /*
-        private void AddRowToPanel(string txt)
+        private void newActivityButton_Click(object sender, EventArgs e)
         {
-            //get a reference to the previous existent row
-            RowStyle temp = planPanel.RowStyles[planPanel.RowCount - 1];
-            //increase panel rows count by one
-            planPanel.RowCount++;
-            //add a new RowStyle as a copy of the previous one
-            planPanel.RowStyles.Add(new RowStyle(temp.SizeType, temp.Height));
-            //define label
-            Label newLabel = new Label() {
-                Text = txt,
-                Anchor = AnchorStyles.None
-            };
-            //add the control
-            planPanel.Controls.Add(newLabel, 0, planPanel.RowCount - 1);           
+            using (NewActivityPrompt prompt = new NewActivityPrompt(ClassName))
+            {
+                this.Enabled = false;
+                prompt.ShowDialog();
+                this.Enabled = true;
+
+                // escape (do nothing) if user X'd out of Lesson Creation prompt (lessonTimeLimit returned 0)
+                //if (prompt.getLessonTimeLimit() <= 0) { return; }
+
+                //lessonName = prompt.getLessonName();
+                //lessonTimeLimit = prompt.getLessonTimeLimit();
+            }
         }
 
-        private void appendPlanEnding()
+        // returns full file path for a given lesson file name
+        private string getLessonPath(string fileName)
         {
-            //get a reference to the previous existent row
-            RowStyle temp = planPanel.RowStyles[planPanel.RowCount - 1];
-            //increase panel rows count by one
-            planPanel.RowCount++;
-            //add a new RowStyle as a copy of the previous one
-            planPanel.RowStyles.Add(new RowStyle(temp.SizeType, temp.Height));
-            //define button
-            Button filler = new Button();
-            filler.Dock = DockStyle.Fill;
-            filler.BackColor = Color.Black;
-            //add button to panel
-            planPanel.Controls.Add(filler, 0, planPanel.RowCount);
+            return "Classes\\" + ClassName + "\\Lessons\\" + fileName + ".json";
         }
-        */
+
+
+
+
+
+
     }
 }
