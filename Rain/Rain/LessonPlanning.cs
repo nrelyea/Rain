@@ -71,9 +71,6 @@ namespace Rain
 
                 //button1.Margin = new Padding(newX, newY, 0, 0);
                 button1.Location = new Point(newX, newY);
-
-                Console.WriteLine("eh");
-
             }
         }
 
@@ -89,7 +86,7 @@ namespace Rain
                 this.Enabled = true;
 
                 // escape (do nothing) if user X'd out of Lesson Creation prompt (lessonTimeLimit returned 0)
-                if(prompt.getLessonTimeLimit() <= 0) { return; }
+                if (prompt.getLessonTimeLimit() <= 0) { return; }
 
                 lessonName = prompt.getLessonName();
                 lessonTimeLimit = prompt.getLessonTimeLimit();
@@ -240,14 +237,14 @@ namespace Rain
 
         private void newActivityButton_Click(object sender, EventArgs e)
         {
-            using (NewActivityPrompt prompt = new NewActivityPrompt(ClassName))
+            using (NewActivityPrompt prompt = new NewActivityPrompt("", "", 0, Color.Yellow))
             {
                 this.Enabled = false;
                 prompt.ShowDialog();
                 this.Enabled = true;
 
-                // escape (do nothing) if user X'd out of Lesson Creation prompt (lessonTimeLimit returned 0)
-                //if (prompt.getLessonTimeLimit() <= 0) { return; }
+                // escape (do nothing) if user X'd out of Activity Editing prompt (activityTime returned 0)
+                if (prompt.getActivityTime() <= 0) { return; }
 
                 //lessonName = prompt.getLessonName();
                 //lessonTimeLimit = prompt.getLessonTimeLimit();
