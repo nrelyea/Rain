@@ -40,7 +40,6 @@
             this.newActivityButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
             this.activitiesPanel = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -49,7 +48,6 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
-            this.activitiesPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -219,25 +217,12 @@
             // activitiesPanel
             // 
             this.activitiesPanel.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.activitiesPanel.Controls.Add(this.button1);
             this.activitiesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.activitiesPanel.Location = new System.Drawing.Point(10, 10);
             this.activitiesPanel.Margin = new System.Windows.Forms.Padding(10);
             this.activitiesPanel.Name = "activitiesPanel";
             this.activitiesPanel.Size = new System.Drawing.Size(432, 430);
             this.activitiesPanel.TabIndex = 3;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(63, 33);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 71);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseDown);
-            this.button1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button1_MouseMove);
             // 
             // LessonPlanning
             // 
@@ -256,7 +241,6 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
-            this.activitiesPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -268,7 +252,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Button newActivityButton;
         private System.Windows.Forms.Button backButton;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button deleteLessonButton;
         private System.Windows.Forms.Button newLessonButton;

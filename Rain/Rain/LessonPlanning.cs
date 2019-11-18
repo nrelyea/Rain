@@ -18,6 +18,15 @@ namespace Rain
     {
         public string ClassName;
 
+        public string CurrentLessonName;
+        public JObject CurrentLesson = new JObject(
+                new JProperty("description", ""),
+                new JProperty("timeLimit", 0),
+                new JProperty("activities", new JArray())
+        );
+
+
+
         public LessonPlanning(string className)
         {
             InitializeComponent();
@@ -31,6 +40,8 @@ namespace Rain
         private void LessonPlanning_Load(object sender, EventArgs e)
         {
             updateDropDownFields();
+            activitiesPanel.Paint += new PaintEventHandler(panel_Paint);
+
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -52,28 +63,6 @@ namespace Rain
             this.Hide();
         }
 
-        private Point MouseDownLocation;
-
-        private void button1_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                MouseDownLocation = e.Location;
-            }
-        }
-
-        private void button1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                int newX = e.X + button1.Left - MouseDownLocation.X;
-                int newY = e.Y + button1.Top - MouseDownLocation.Y;
-
-                //button1.Margin = new Padding(newX, newY, 0, 0);
-                button1.Location = new Point(newX, newY);
-            }
-        }
-
         private void newLessonButton_Click(object sender, EventArgs e)
         {
             string lessonName;
@@ -93,7 +82,7 @@ namespace Rain
             }
 
             JObject lessonObj = new JObject(
-                new JProperty("description", (string)""),
+                new JProperty("description", ""),
                 new JProperty("timeLimit", (int)lessonTimeLimit),
                 new JProperty("activities", new JArray())
             );
@@ -162,26 +151,23 @@ namespace Rain
             JArray activities = new JArray();
 
             JObject act1 = new JObject(
-                //new JProperty("name", (string)lessonName),
                 new JProperty("name", (string)"Warmup"),
                 new JProperty("time", (double)5.0),
-                new JProperty("color", (string)"Green")
+                new JProperty("color", (string)"-16744448")
             );
             activities.Add(act1);
 
             JObject act2 = new JObject(
-                //new JProperty("name", (string)lessonName),
                 new JProperty("name", (string)"Powerpoint"),
                 new JProperty("time", (double)20.0),
-                new JProperty("color", (string)"Blue")
+                new JProperty("color", (string)"-16776961")
             );
             activities.Add(act2);
 
             JObject act3 = new JObject(
-                //new JProperty("name", (string)lessonName),
                 new JProperty("name", (string)"Quiz"),
                 new JProperty("time", (double)10.0),
-                new JProperty("color", (string)"Red")
+                new JProperty("color", (string)"-65536")
             );
             activities.Add(act3);
 
@@ -257,10 +243,35 @@ namespace Rain
             return "Classes\\" + ClassName + "\\Lessons\\" + fileName + ".json";
         }
 
+        private void panel_Paint(object sender, PaintEventArgs e)
+        {
+            var p = sender as Panel;
+            var g = e.Graphics;
 
+            JObject act1 = new JObject(
+                new JProperty("name", (string)"Warmup"),
+                new JProperty("time", (double)5.0),
+                new JProperty("color", (string)"-16744448")
+            );
 
+            drawActivity(act1, 0, 100, sender, g);
 
+        }
 
+        private void drawActivity(JObject act, int position, int height, object sender, Graphics g)
+        {
+            string name = getName(act);
+            double time = getTime(act);
+            Color color = getColor(act);
 
+            g.FillRectangle(new SolidBrush(color), new Rectangle(0, position, activitiesPanel.Width, height));
+            g.DrawString(name + ": " + time + " min", new Font("Arial", 16), new SolidBrush(Color.Black), 0, position);
+        }
+
+        // function calls to more easily retrieve values from activity object
+        private string getName(JObject a) { return (string)((JObject)a).GetValue("name"); }
+        private string getDescription(JObject a) { return (string)((JObject)a).GetValue("description"); }
+        private double getTime(JObject a) { return (double)((JObject)a).GetValue("time"); }
+        private Color getColor(JObject a) { return Color.FromArgb(Convert.ToInt32((string)((JObject)a).GetValue("color"))); }
     }
 }
