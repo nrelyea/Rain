@@ -190,7 +190,7 @@
             // 
             this.newActivityButton.BackColor = System.Drawing.Color.Honeydew;
             this.newActivityButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.newActivityButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newActivityButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.newActivityButton.Location = new System.Drawing.Point(25, 265);
             this.newActivityButton.Margin = new System.Windows.Forms.Padding(25);
             this.newActivityButton.Name = "newActivityButton";
@@ -204,7 +204,7 @@
             // 
             this.backButton.BackColor = System.Drawing.Color.Honeydew;
             this.backButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backButton.Location = new System.Drawing.Point(25, 25);
             this.backButton.Margin = new System.Windows.Forms.Padding(25);
             this.backButton.Name = "backButton";

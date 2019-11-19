@@ -40,6 +40,9 @@ namespace Rain
         private void LessonPlanning_Load(object sender, EventArgs e)
         {
             updateDropDownFields();
+            CurrentLessonName = selectLessonDropDown.Text;
+            updateCurrentLessonData();
+
             activitiesPanel.Paint += new PaintEventHandler(panel_Paint);
 
         }
@@ -124,6 +127,13 @@ namespace Rain
             }
 
 
+        }
+
+        // update CurrentLesson JObject to reflect contents of file under CurrentLessonName
+        private void updateCurrentLessonData()
+        {
+            string lessonPath = @"Classes\\" + ClassName + "\\Lessons\\" + CurrentLessonName + ".json";
+            CurrentLesson = JObject.Parse(File.ReadAllText(lessonPath));
         }
 
         // converts an entire file path (i.e. \Classes\Lessons\first day.json) to just file name (first day)
@@ -245,6 +255,8 @@ namespace Rain
 
         private void panel_Paint(object sender, PaintEventArgs e)
         {
+            Console.WriteLine("\n-- Painting --\n");
+
             var p = sender as Panel;
             var g = e.Graphics;
 
@@ -254,10 +266,24 @@ namespace Rain
                 new JProperty("color", (string)"-16744448")
             );
 
-            drawActivity(act1, 0, 100, sender, g);
+            //drawActivity(act1, 0, 100, sender, g);
+            drawAllActivities(sender, g);
 
         }
 
+        private void drawAllActivities(object sender, Graphics g)
+        {
+            JArray activities = (JArray)((JObject)CurrentLesson).GetValue("activities");
+
+            int i = 0;
+            foreach (JObject act in activities)
+            {
+                drawActivity(act, i, 100, sender, g);
+                i += 110;
+            }
+        }
+
+        // draw a single activity based on vertical position and height
         private void drawActivity(JObject act, int position, int height, object sender, Graphics g)
         {
             string name = getName(act);
@@ -265,7 +291,7 @@ namespace Rain
             Color color = getColor(act);
 
             g.FillRectangle(new SolidBrush(color), new Rectangle(0, position, activitiesPanel.Width, height));
-            g.DrawString(name + ": " + time + " min", new Font("Arial", 16), new SolidBrush(Color.Black), 0, position);
+            g.DrawString(name + ": " + time + " min", new Font("Microsoft Sans Serif", 16), new SolidBrush(Color.Black), 0, position);
         }
 
         // function calls to more easily retrieve values from activity object
@@ -273,5 +299,7 @@ namespace Rain
         private string getDescription(JObject a) { return (string)((JObject)a).GetValue("description"); }
         private double getTime(JObject a) { return (double)((JObject)a).GetValue("time"); }
         private Color getColor(JObject a) { return Color.FromArgb(Convert.ToInt32((string)((JObject)a).GetValue("color"))); }
+
+
     }
 }
