@@ -41,9 +41,11 @@ namespace Rain
         {
             updateDropDownFields();
             CurrentLessonName = selectLessonDropDown.Text;
-            updateCurrentLessonData();
+            loadCurrentLessonData();
 
             activitiesPanel.Paint += new PaintEventHandler(panel_Paint);
+
+            //testCreateLesson();
 
         }
 
@@ -60,6 +62,9 @@ namespace Rain
                 }
             }
             */
+
+            // TEMPORARY FOR TESTING: RESETS CURRENT LESSON TO TEMPLATE
+            testCreateLesson();
 
             MainMenu menu = new MainMenu(ClassName);
             menu.Show();
@@ -130,10 +135,16 @@ namespace Rain
         }
 
         // update CurrentLesson JObject to reflect contents of file under CurrentLessonName
-        private void updateCurrentLessonData()
+        private void loadCurrentLessonData()
         {
             string lessonPath = @"Classes\\" + ClassName + "\\Lessons\\" + CurrentLessonName + ".json";
             CurrentLesson = JObject.Parse(File.ReadAllText(lessonPath));
+        }
+
+        // update JSON file for lesson to reflect contents of CurrentLesson
+        private void saveCurrentLessonData()
+        {
+            File.WriteAllText(getLessonPath(CurrentLessonName), CurrentLesson.ToString());
         }
 
         // converts an entire file path (i.e. \Classes\Lessons\first day.json) to just file name (first day)
@@ -162,6 +173,7 @@ namespace Rain
 
             JObject act1 = new JObject(
                 new JProperty("name", (string)"Warmup"),
+                new JProperty("description",(string)"Warmup for the class"),
                 new JProperty("time", (double)5.0),
                 new JProperty("color", (string)"-16744448")
             );
@@ -169,6 +181,7 @@ namespace Rain
 
             JObject act2 = new JObject(
                 new JProperty("name", (string)"Powerpoint"),
+                new JProperty("description", (string)"Powerpoint on new material"),
                 new JProperty("time", (double)20.0),
                 new JProperty("color", (string)"-16776961")
             );
@@ -176,6 +189,7 @@ namespace Rain
 
             JObject act3 = new JObject(
                 new JProperty("name", (string)"Quiz"),
+                new JProperty("description", (string)"Quiz on last week's material"),
                 new JProperty("time", (double)10.0),
                 new JProperty("color", (string)"-65536")
             );
@@ -242,8 +256,30 @@ namespace Rain
                 // escape (do nothing) if user X'd out of Activity Editing prompt (activityTime returned 0)
                 if (prompt.getActivityTime() <= 0) { return; }
 
-                //lessonName = prompt.getLessonName();
-                //lessonTimeLimit = prompt.getLessonTimeLimit();
+                // if input for new activity was valid:
+
+                // get current activities list from lesson
+                JArray activities = getActivities(CurrentLesson);
+
+                // create a new activity based on user input data from prompt
+                JObject newAct = new JObject(
+                    new JProperty("name", prompt.getActivityName()),
+                    new JProperty("description", prompt.getActivityDescription()),
+                    new JProperty("time", prompt.getActivityTime()),
+                    new JProperty("color", prompt.getActivityColor().ToArgb().ToString())
+                );
+
+                // add said new activity to the activity list
+                activities.Add(newAct);
+
+                // update current lesson data to reflect new activity list with the new added item
+                CurrentLesson["activities"] = activities;
+
+                // update JSON file for lesson to reflect new lesson data
+                saveCurrentLessonData();
+
+                // update the panel to reflect changes
+                activitiesPanel.Invalidate();
             }
         }
 
@@ -273,7 +309,7 @@ namespace Rain
 
         private void drawAllActivities(object sender, Graphics g)
         {
-            JArray activities = (JArray)((JObject)CurrentLesson).GetValue("activities");
+            JArray activities = getActivities(CurrentLesson);
 
             int i = 0;
             foreach (JObject act in activities)
@@ -290,8 +326,11 @@ namespace Rain
             double time = getTime(act);
             Color color = getColor(act);
 
+            // inverts color, used for text on activities
+            Color inverted = Color.FromArgb(color.ToArgb() ^ 0xffffff);
+
             g.FillRectangle(new SolidBrush(color), new Rectangle(0, position, activitiesPanel.Width, height));
-            g.DrawString(name + ": " + time + " min", new Font("Microsoft Sans Serif", 16), new SolidBrush(Color.Black), 0, position);
+            g.DrawString(name + ": " + time + " min", new Font("Microsoft Sans Serif", 16), new SolidBrush(inverted), 0, position);
         }
 
         // function calls to more easily retrieve values from activity object
@@ -300,6 +339,7 @@ namespace Rain
         private double getTime(JObject a) { return (double)((JObject)a).GetValue("time"); }
         private Color getColor(JObject a) { return Color.FromArgb(Convert.ToInt32((string)((JObject)a).GetValue("color"))); }
 
-
+        // function call to more easily retrieve activities list from lesson object
+        private JArray getActivities(JObject lsn) { return (JArray)((JObject)CurrentLesson).GetValue("activities"); }
     }
 }
