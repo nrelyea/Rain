@@ -46,6 +46,8 @@ namespace Rain
 
             activitiesPanel.Paint += new PaintEventHandler(panel_Paint);
 
+            this.DoubleBuffered = true;
+
             //testCreateLesson();
 
         }
@@ -293,7 +295,7 @@ namespace Rain
 
         private void panel_Paint(object sender, PaintEventArgs e)
         {
-            Console.WriteLine("\n-- Painting --\n");
+            //Console.WriteLine("\n-- Painting --\n");
 
             //var p = sender as Panel;
             var g = e.Graphics;
@@ -302,7 +304,7 @@ namespace Rain
 
             if (MouseIsDown)
             {
-                g.FillRectangle(new SolidBrush(Color.White), new Rectangle(0, 0, 100, 100));
+                g.FillRectangle(new SolidBrush(Color.White), new Rectangle(MouseDownLocation.X, MouseDownLocation.Y, 100, 100));
             }
 
         }
@@ -357,7 +359,7 @@ namespace Rain
             {
                 MouseIsDown = true;
                 MouseDownLocation = e.Location;
-                Console.WriteLine("location updated");
+                //Console.WriteLine("location updated");
                 activitiesPanel.Invalidate();
             }
         }
