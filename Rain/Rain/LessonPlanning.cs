@@ -25,7 +25,8 @@ namespace Rain
                 new JProperty("activities", new JArray())
         );
 
-
+        bool MouseIsDown = false;
+        Point MouseDownLocation;
 
         public LessonPlanning(string className)
         {
@@ -280,6 +281,7 @@ namespace Rain
 
                 // update the panel to reflect changes
                 activitiesPanel.Invalidate();
+
             }
         }
 
@@ -293,17 +295,15 @@ namespace Rain
         {
             Console.WriteLine("\n-- Painting --\n");
 
-            var p = sender as Panel;
+            //var p = sender as Panel;
             var g = e.Graphics;
 
-            JObject act1 = new JObject(
-                new JProperty("name", (string)"Warmup"),
-                new JProperty("time", (double)5.0),
-                new JProperty("color", (string)"-16744448")
-            );
-
-            //drawActivity(act1, 0, 100, sender, g);
             drawAllActivities(sender, g);
+
+            if (MouseIsDown)
+            {
+                g.FillRectangle(new SolidBrush(Color.White), new Rectangle(0, 0, 100, 100));
+            }
 
         }
 
@@ -341,5 +341,25 @@ namespace Rain
 
         // function call to more easily retrieve activities list from lesson object
         private JArray getActivities(JObject lsn) { return (JArray)((JObject)CurrentLesson).GetValue("activities"); }
+
+        private void activitiesPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                //MouseDownLocation = e.Location;
+                //Console.WriteLine("Mouse down");
+            }
+        }
+
+        private void activitiesPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                MouseIsDown = true;
+                MouseDownLocation = e.Location;
+                Console.WriteLine("location updated");
+                activitiesPanel.Invalidate();
+            }
+        }
     }
 }
