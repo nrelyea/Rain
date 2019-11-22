@@ -29,6 +29,10 @@ namespace Rain
                 formGroupsButton.Hide();
             }
         }
+        private void MainMenu_Load(object sender, EventArgs e)
+        {
+
+        }
 
         // returns true if students.json file exists and contains at least one student
         private bool canLoadStudents()
@@ -79,5 +83,12 @@ namespace Rain
             plan.Show();
             this.Hide();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

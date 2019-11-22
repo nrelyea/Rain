@@ -25,8 +25,12 @@ namespace Rain
                 new JProperty("activities", new JArray())
         );
 
+        Point panLocation;
+
         bool MouseIsDown = false;
         Point MouseDownLocation;
+
+
 
         public LessonPlanning(string className)
         {
@@ -42,13 +46,14 @@ namespace Rain
         {
             updateDropDownFields();
             CurrentLessonName = selectLessonDropDown.Text;
-            loadCurrentLessonData();
+            loadCurrentLessonData();           
 
-            activitiesPanel.Paint += new PaintEventHandler(panel_Paint);
-
+            Console.WriteLine("calling paint method");
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.LessonPlanning_Paint);
             this.DoubleBuffered = true;
+            //this.Invalidate();
 
-            //testCreateLesson();
+            //testCreateLesson();      
 
         }
 
@@ -282,7 +287,7 @@ namespace Rain
                 saveCurrentLessonData();
 
                 // update the panel to reflect changes
-                activitiesPanel.Invalidate();
+                this.Invalidate();
 
             }
         }
@@ -293,14 +298,16 @@ namespace Rain
             return "Classes\\" + ClassName + "\\Lessons\\" + fileName + ".json";
         }
 
-        private void panel_Paint(object sender, PaintEventArgs e)
+        private void LessonPlanning_Paint(object sender, System.Windows.Forms.PaintEventArgs args)
         {
-            //Console.WriteLine("\n-- Painting --\n");
+            Console.WriteLine("\n-- Painting --\n");
 
-            //var p = sender as Panel;
-            var g = e.Graphics;
+            panLocation = new Point((this.Width / 3), 10);
 
-            drawAllActivities(sender, g);
+            var g = args.Graphics;
+
+
+            drawAllActivities(g);
 
             if (MouseIsDown)
             {
@@ -309,20 +316,20 @@ namespace Rain
 
         }
 
-        private void drawAllActivities(object sender, Graphics g)
+        private void drawAllActivities(Graphics g)
         {
             JArray activities = getActivities(CurrentLesson);
 
             int i = 0;
             foreach (JObject act in activities)
             {
-                drawActivity(act, i, 100, sender, g);
+                drawActivity(act, panLocation.X, panLocation.Y + i, 100, g);
                 i += 110;
             }
         }
 
         // draw a single activity based on vertical position and height
-        private void drawActivity(JObject act, int position, int height, object sender, Graphics g)
+        private void drawActivity(JObject act, int xPos, int yPos, int height, Graphics g)
         {
             string name = getName(act);
             double time = getTime(act);
@@ -331,8 +338,9 @@ namespace Rain
             // inverts color, used for text on activities
             Color inverted = Color.FromArgb(color.ToArgb() ^ 0xffffff);
 
-            g.FillRectangle(new SolidBrush(color), new Rectangle(0, position, activitiesPanel.Width, height));
-            g.DrawString(name + ": " + time + " min", new Font("Microsoft Sans Serif", 16), new SolidBrush(inverted), 0, position);
+            //g.FillRectangle(new SolidBrush(color), new Rectangle(0, position, activitiesPanel.Width, height));
+            g.FillRectangle(new SolidBrush(color), new Rectangle(xPos, yPos, 500, height));
+            g.DrawString(name + ": " + time + " min", new Font("Microsoft Sans Serif", 16), new SolidBrush(inverted), xPos, yPos);
         }
 
         // function calls to more easily retrieve values from activity object
@@ -360,7 +368,7 @@ namespace Rain
                 MouseIsDown = true;
                 MouseDownLocation = e.Location;
                 //Console.WriteLine("location updated");
-                activitiesPanel.Invalidate();
+                this.Invalidate();
             }
         }
     }

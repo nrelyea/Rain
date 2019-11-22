@@ -93,6 +93,7 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "button4";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // formGroupsButton
             // 
@@ -142,6 +143,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MainMenu";
             this.Text = "Rain | Main Menu";
+            this.Load += new System.EventHandler(this.MainMenu_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);

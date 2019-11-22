@@ -49,6 +49,7 @@
             // 
             // tableLayoutPanelMAIN
             // 
+            this.tableLayoutPanelMAIN.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanelMAIN.ColumnCount = 2;
             this.tableLayoutPanelMAIN.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanelMAIN.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
@@ -64,7 +65,7 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.NavajoWhite;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.deleteLessonButton, 0, 3);
@@ -230,6 +231,7 @@
             this.Name = "LessonPlanning";
             this.Text = "LessonPlanning";
             this.Load += new System.EventHandler(this.LessonPlanning_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.LessonPlanning_Paint);
             this.tableLayoutPanelMAIN.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
