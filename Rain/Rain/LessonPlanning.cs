@@ -7,10 +7,12 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace Rain
 {
@@ -25,20 +27,28 @@ namespace Rain
                 new JProperty("activities", new JArray())
         );
 
-        Point panLocation;
+        public Point panLocation;
+        public int panWidth;
 
         bool MouseIsDown = false;
+        Point InitialMouseLocation;
         Point MouseDownLocation;
 
+        public int paintCount;
 
 
         public LessonPlanning(string className)
         {
+
             InitializeComponent();
 
             WindowState = FormWindowState.Maximized;
 
             ClassName = className;
+
+            paintCount = 0;
+
+
 
         }
 
@@ -49,34 +59,29 @@ namespace Rain
             loadCurrentLessonData();           
 
             Console.WriteLine("calling paint method");
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.LessonPlanning_Paint);
+            //this.Paint += new System.Windows.Forms.PaintEventHandler(this.LessonPlanning_Paint);
             this.DoubleBuffered = true;
-            //this.Invalidate();
+            //this.Invalidate();           
 
-            //testCreateLesson();      
-
+            //testCreateLesson();
         }
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            /*
-            if (savedText != mainTextBox.Text)
-            {
-                DialogResult dialogResult = MessageBox.Show("Warning: There are unsaved changes to the student list!\n\n" +
-                    "Would you like to save your changes before returning to the Main Menu?", "Warning: Unsaved Changes", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    saveStudents();
-                }
-            }
-            */
 
+            ///*
+            
             // TEMPORARY FOR TESTING: RESETS CURRENT LESSON TO TEMPLATE
             testCreateLesson();
 
             MainMenu menu = new MainMenu(ClassName);
             menu.Show();
             this.Hide();
+
+            //*/
+
+            //this.Invalidate();
+
         }
 
         private void newLessonButton_Click(object sender, EventArgs e)
@@ -287,7 +292,7 @@ namespace Rain
                 saveCurrentLessonData();
 
                 // update the panel to reflect changes
-                this.Invalidate();
+                this.Refresh();
 
             }
         }
@@ -300,19 +305,23 @@ namespace Rain
 
         private void LessonPlanning_Paint(object sender, System.Windows.Forms.PaintEventArgs args)
         {
-            Console.WriteLine("\n-- Painting --\n");
 
-            panLocation = new Point((this.Width / 3), 10);
+
+            // setting reference location for activities drawing to match sidebar (1/3 across screen)
+            panLocation = new Point((this.Width / 3) + 4, 9);
+            // setting reference width that each activity painted should be
+            panWidth = this.Width * 17 / 30 - 27;
 
             var g = args.Graphics;
 
-
+            
             drawAllActivities(g);
-
+            /*
             if (MouseIsDown)
             {
                 g.FillRectangle(new SolidBrush(Color.White), new Rectangle(MouseDownLocation.X, MouseDownLocation.Y, 100, 100));
             }
+            */
 
         }
 
@@ -320,12 +329,34 @@ namespace Rain
         {
             JArray activities = getActivities(CurrentLesson);
 
+            List<int> posList = getActivityPositionList(activities);
+
             int i = 0;
             foreach (JObject act in activities)
             {
-                drawActivity(act, panLocation.X, panLocation.Y + i, 100, g);
-                i += 110;
+                drawActivity(act, panLocation.X, panLocation.Y + posList[i], posList[i+1] - posList[i], g);
+                i++;
             }
+
+
+
+
+
+            Font newFont = new Font("Microsoft Sans Serif", 24);
+            newFont = new Font(newFont, FontStyle.Bold);
+
+            double timeToDisplay = getTimeSum(activities);
+
+            Color timeColor = Color.Green;
+            
+            // if total lesson time exceeds proposed time limit, write lesson time in RED instead of GREEN
+            if(timeToDisplay > (double)((JObject)CurrentLesson).GetValue("timeLimit"))
+            {
+                timeColor = Color.Red;
+            }
+
+            g.DrawString("Total Lesson Time:", newFont, new SolidBrush(Color.Black), panLocation.X + panWidth / 2 - 200, this.Height - 100);
+            g.DrawString(timeToDisplay.ToString() + " min", newFont, new SolidBrush(timeColor), panLocation.X + panWidth / 2 + 100, this.Height - 100);
         }
 
         // draw a single activity based on vertical position and height
@@ -335,12 +366,13 @@ namespace Rain
             double time = getTime(act);
             Color color = getColor(act);
 
-            // inverts color, used for text on activities
-            Color inverted = Color.FromArgb(color.ToArgb() ^ 0xffffff);
+            // creates new brush that inverts color, used for text on activities
+            SolidBrush invertedBrush = new SolidBrush(Color.FromArgb(color.ToArgb() ^ 0xffffff));
 
-            //g.FillRectangle(new SolidBrush(color), new Rectangle(0, position, activitiesPanel.Width, height));
-            g.FillRectangle(new SolidBrush(color), new Rectangle(xPos, yPos, 500, height));
-            g.DrawString(name + ": " + time + " min", new Font("Microsoft Sans Serif", 16), new SolidBrush(inverted), xPos, yPos);
+            g.FillRectangle(new SolidBrush(color), new Rectangle(xPos, yPos, panWidth, height));
+            g.DrawString(name, new Font("Microsoft Sans Serif", 16), invertedBrush, xPos + 30, yPos + height / 2 - 14);
+            g.DrawString(time + " min", new Font("Microsoft Sans Serif", 16), invertedBrush, xPos + panWidth - 100, yPos + height / 2 - 14);
+            
         }
 
         // function calls to more easily retrieve values from activity object
@@ -350,14 +382,13 @@ namespace Rain
         private Color getColor(JObject a) { return Color.FromArgb(Convert.ToInt32((string)((JObject)a).GetValue("color"))); }
 
         // function call to more easily retrieve activities list from lesson object
-        private JArray getActivities(JObject lsn) { return (JArray)((JObject)CurrentLesson).GetValue("activities"); }
+        private JArray getActivities(JObject lsn) { return (JArray)((JObject)lsn).GetValue("activities"); }
 
         private void activitiesPanel_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                //MouseDownLocation = e.Location;
-                //Console.WriteLine("Mouse down");
+                InitialMouseLocation = e.Location;
             }
         }
 
@@ -365,11 +396,61 @@ namespace Rain
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                MouseIsDown = true;
                 MouseDownLocation = e.Location;
-                //Console.WriteLine("location updated");
-                this.Invalidate();
             }
         }
-    }
+
+        // Returns pixel positions that each activity should be painted at
+        // This list is ONE unit longer than number of activities, as last element
+        // is reserved for position of bottom edge of activities block
+        private List<int> getActivityPositionList(JArray actList)
+        {
+            // initialize the position list, with first activity's position always being 0
+            List<int> posList = new List<int> { 0 };
+
+            List<double> timeList = new List<double> { };
+            double timeSum = getTimeSum(actList);
+            int panLimit = activitiesPanel.Height * 9 / 10;
+
+            // pull time data from each activity and add to time list
+            // also update timeSum to reflect total sum of time spent on each activity
+            foreach (JObject act in actList)
+            {
+                timeList.Add(getTime(act));
+            }
+
+            double timeLimit = (double)((JObject)CurrentLesson).GetValue("timeLimit");
+
+            // if total lesson time exceeds proposed timeLimit, fit activities to lesson time total
+            // instead of timeLimit
+            if(timeSum > timeLimit)
+            {
+                timeLimit = timeSum;
+            }
+
+            // for each time in timeList:
+            for (int i = 0; i < timeList.Count; i++)
+            {
+                // determine amount of vertical space the activity should occupy
+                int actHeight = (int)((double)panLimit * timeList[i] / timeLimit);
+                // add that height to the previous position, and add that total to the position list
+                posList.Add(actHeight + posList[i]);
+            }
+
+            return posList;
+        }
+
+        // returns sum of activity times in activity list
+        private double getTimeSum(JArray actList)
+        {
+            double sum = 0;
+
+            foreach (JObject act in actList)
+            {
+                sum += getTime(act);
+            }
+
+            return sum;
+        }
+    }    
 }
