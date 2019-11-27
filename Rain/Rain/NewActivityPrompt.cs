@@ -63,7 +63,6 @@ namespace Rain
         {
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
-                Console.WriteLine("Color chosen: " + colorDialog.Color.Name);
                 updateColor(colorDialog.Color);
             }
         }

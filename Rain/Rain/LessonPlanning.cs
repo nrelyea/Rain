@@ -33,6 +33,7 @@ namespace Rain
         bool MouseIsDown = false;
         Point InitialMouseLocation;
         Point MouseDownLocation;
+        int SelectedActivityIndex;
 
         public int paintCount;
 
@@ -81,7 +82,6 @@ namespace Rain
             //*/
 
             //this.Invalidate();
-
         }
 
         private void newLessonButton_Click(object sender, EventArgs e)
@@ -384,21 +384,7 @@ namespace Rain
         // function call to more easily retrieve activities list from lesson object
         private JArray getActivities(JObject lsn) { return (JArray)((JObject)lsn).GetValue("activities"); }
 
-        private void activitiesPanel_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                InitialMouseLocation = e.Location;
-            }
-        }
-
-        private void activitiesPanel_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                MouseDownLocation = e.Location;
-            }
-        }
+        
 
         // Returns pixel positions that each activity should be painted at
         // This list is ONE unit longer than number of activities, as last element
@@ -440,6 +426,20 @@ namespace Rain
             return posList;
         }
 
+        // returns index of activity clicked on based on position of mouse at time of click
+        private int getActivityIndexFromMousePosition(Point clickPos)
+        {
+            List<int> posList = getActivityPositionList(getActivities(CurrentLesson));
+            for(int i = 1; i < posList.Count; i++)
+            {
+                if(clickPos.Y <= posList[i])
+                {
+                    return i - 1;
+                }
+            }
+            return -1;
+        }
+
         // returns sum of activity times in activity list
         private double getTimeSum(JArray actList)
         {
@@ -451,6 +451,81 @@ namespace Rain
             }
 
             return sum;
+        }
+
+        // swaps two activities within the current activity list of the current lesson based on their indices
+        private void swapActivities(int indexA, int indexB)
+        {
+            JArray activities = getActivities(CurrentLesson);
+            var tempAct = activities[indexA];
+            activities[indexA] = activities[indexB];
+            activities[indexB] = tempAct;
+
+            saveCurrentLessonData();
+        }
+
+        private void activitiesPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                InitialMouseLocation = e.Location;
+                SelectedActivityIndex = getActivityIndexFromMousePosition(e.Location);
+                //MouseIsDown = true;
+            }
+        }
+
+        private void activitiesPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                //MouseDownLocation = e.Location;
+                
+                // if cursor has been dragged less than 5 pixels up or down, ignore
+                if(Math.Abs(e.Location.Y - InitialMouseLocation.Y) <= 5) { return; }
+
+                // if cursor was pressed not pressed on an activity, ignore
+                if(SelectedActivityIndex < 0) { return; }
+
+                //JArray activities = getActivities(CurrentLesson);
+                List<int> posList = getActivityPositionList(getActivities(CurrentLesson));                
+
+                if(SelectedActivityIndex > 0)
+                {
+                    int upperThreshold = posList[SelectedActivityIndex - 1] + (posList[SelectedActivityIndex + 1] - posList[SelectedActivityIndex]) / 2;
+                    if(e.Location.Y < upperThreshold)
+                    {
+                        swapActivities(SelectedActivityIndex, SelectedActivityIndex - 1);
+                        Invalidate();
+
+                        InitialMouseLocation = e.Location;
+                        SelectedActivityIndex--;
+                    }
+                }
+                if(SelectedActivityIndex < posList.Count - 2)
+                {
+                    int lowerThreshold = posList[SelectedActivityIndex] + (posList[SelectedActivityIndex + 2] - posList[SelectedActivityIndex + 1]) + (posList[SelectedActivityIndex + 1] - posList[SelectedActivityIndex]) / 2;
+                    if (e.Location.Y > lowerThreshold)
+                    {
+                        swapActivities(SelectedActivityIndex, SelectedActivityIndex + 1);
+                        Invalidate();
+
+                        InitialMouseLocation = e.Location;
+                        SelectedActivityIndex++;
+                    }
+                }
+                
+            }
+        }
+
+        private void activitiesPanel_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine("Double clicked on activity " + getActivityIndexFromMousePosition(e.Location));
+            Console.WriteLine("(Activity position is {0})", getActivityPositionList(getActivities(CurrentLesson))[getActivityIndexFromMousePosition(e.Location)]);
+        }
+
+        private void activitiesPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+            //MouseIsDown = false;
         }
     }    
 }

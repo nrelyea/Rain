@@ -217,8 +217,10 @@
             this.activitiesPanel.Name = "activitiesPanel";
             this.activitiesPanel.Size = new System.Drawing.Size(428, 424);
             this.activitiesPanel.TabIndex = 3;
+            this.activitiesPanel.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.activitiesPanel_MouseDoubleClick);
             this.activitiesPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.activitiesPanel_MouseDown);
             this.activitiesPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.activitiesPanel_MouseMove);
+            this.activitiesPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.activitiesPanel_MouseUp);
             // 
             // LessonPlanning
             // 
