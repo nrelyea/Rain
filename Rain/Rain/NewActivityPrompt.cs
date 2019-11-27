@@ -17,6 +17,8 @@ namespace Rain
         public double ActivityTime = 0;
         public Color ActivityColor;
 
+        public bool Saved = false;
+
         public NewActivityPrompt(string name, string desc, double time, Color clr)
         {
             InitializeComponent();
@@ -50,6 +52,7 @@ namespace Rain
                 ActivityDescription = descriptionTextBox.Text;
                 ActivityTime = Convert.ToDouble(timeTextBox.Text);
 
+                Saved = true;
                 this.Close();
             }
             else
@@ -95,6 +98,8 @@ namespace Rain
         public string getActivityDescription() { return ActivityDescription; }
         public double getActivityTime() { return ActivityTime; }
         public Color getActivityColor() { return ActivityColor; }
+
+        public bool isSaved() { return Saved; }
 
         
     }

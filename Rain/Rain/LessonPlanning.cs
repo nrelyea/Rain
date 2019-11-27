@@ -316,12 +316,6 @@ namespace Rain
 
             
             drawAllActivities(g);
-            /*
-            if (MouseIsDown)
-            {
-                g.FillRectangle(new SolidBrush(Color.White), new Rectangle(MouseDownLocation.X, MouseDownLocation.Y, 100, 100));
-            }
-            */
 
         }
 
@@ -337,9 +331,6 @@ namespace Rain
                 drawActivity(act, panLocation.X, panLocation.Y + posList[i], posList[i+1] - posList[i], g);
                 i++;
             }
-
-
-
 
 
             Font newFont = new Font("Microsoft Sans Serif", 24);
@@ -470,28 +461,26 @@ namespace Rain
             {
                 InitialMouseLocation = e.Location;
                 SelectedActivityIndex = getActivityIndexFromMousePosition(e.Location);
-                //MouseIsDown = true;
             }
         }
 
         private void activitiesPanel_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                //MouseDownLocation = e.Location;
-                
+            {                
                 // if cursor has been dragged less than 5 pixels up or down, ignore
                 if(Math.Abs(e.Location.Y - InitialMouseLocation.Y) <= 5) { return; }
 
                 // if cursor was pressed not pressed on an activity, ignore
                 if(SelectedActivityIndex < 0) { return; }
 
-                //JArray activities = getActivities(CurrentLesson);
                 List<int> posList = getActivityPositionList(getActivities(CurrentLesson));                
 
-                if(SelectedActivityIndex > 0)
+                // if user dragged mouse UP and from an activity that has at least one other activity ABOVE it
+                if(e.Location.Y < InitialMouseLocation.Y && SelectedActivityIndex > 0)
                 {
-                    int upperThreshold = posList[SelectedActivityIndex - 1] + (posList[SelectedActivityIndex + 1] - posList[SelectedActivityIndex]) / 2;
+                    int upperThreshold = posList[SelectedActivityIndex - 1] + (posList[SelectedActivityIndex + 1] - posList[SelectedActivityIndex]) / 2;                   
+                    // if mouse has passed what would be the halfway point of the new activity position if it moved
                     if(e.Location.Y < upperThreshold)
                     {
                         swapActivities(SelectedActivityIndex, SelectedActivityIndex - 1);
@@ -501,9 +490,11 @@ namespace Rain
                         SelectedActivityIndex--;
                     }
                 }
-                if(SelectedActivityIndex < posList.Count - 2)
+                // if user dragged mouse DOWN and from an activity that has at least one other activity BELOW it
+                else if(e.Location.Y > InitialMouseLocation.Y && SelectedActivityIndex < posList.Count - 2)
                 {
                     int lowerThreshold = posList[SelectedActivityIndex] + (posList[SelectedActivityIndex + 2] - posList[SelectedActivityIndex + 1]) + (posList[SelectedActivityIndex + 1] - posList[SelectedActivityIndex]) / 2;
+                    // if mouse has passed what would be the halfway point of the new activity position if it moved
                     if (e.Location.Y > lowerThreshold)
                     {
                         swapActivities(SelectedActivityIndex, SelectedActivityIndex + 1);
@@ -519,8 +510,49 @@ namespace Rain
 
         private void activitiesPanel_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Console.WriteLine("Double clicked on activity " + getActivityIndexFromMousePosition(e.Location));
-            Console.WriteLine("(Activity position is {0})", getActivityPositionList(getActivities(CurrentLesson))[getActivityIndexFromMousePosition(e.Location)]);
+            int actIndex = getActivityIndexFromMousePosition(e.Location);
+
+            // if area double clicked was not an activity, ignore
+            if (actIndex < 0) { return; }
+
+            Console.WriteLine("Double clicked on activity " + actIndex);
+
+            JArray activities = getActivities(CurrentLesson);
+            JObject act = (JObject)activities[actIndex];
+
+            using (NewActivityPrompt prompt = new NewActivityPrompt(getName(act), getDescription(act), getTime(act), getColor(act)))
+            {
+                this.Enabled = false;
+                prompt.ShowDialog();
+                this.Enabled = true;
+
+                // escape (do nothing) if user X'd out of Activity Editing prompt (activityTime returned 0)
+                if (!prompt.isSaved()) { return; }
+
+                // if input for new activity was valid:
+
+                // create a updated activity based on user input data from prompt
+                JObject updatedAct = new JObject(
+                    new JProperty("name", prompt.getActivityName()),
+                    new JProperty("description", prompt.getActivityDescription()),
+                    new JProperty("time", prompt.getActivityTime()),
+                    new JProperty("color", prompt.getActivityColor().ToArgb().ToString())
+                );
+
+                // update said activity in the activity list
+                activities[actIndex] = updatedAct;
+
+                // update current lesson data to reflect updated activity list
+                CurrentLesson["activities"] = activities;
+
+                // update JSON file for lesson to reflect updated lesson data
+                saveCurrentLessonData();
+
+                // update the panel to reflect changes
+                Invalidate();
+
+            }
+
         }
 
         private void activitiesPanel_MouseUp(object sender, MouseEventArgs e)
