@@ -22,6 +22,11 @@ namespace Rain
             updateDropDownFields();
         }
 
+        private void LandingPage_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void updateDropDownFields()
         {
             var directories = Directory.GetDirectories("Classes");
@@ -52,10 +57,7 @@ namespace Rain
 
         }
 
-        private void LandingPage_Load(object sender, EventArgs e)
-        {
 
-        }
 
         private void loadClassButton_Click(object sender, EventArgs e)
         {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewActivityPrompt));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.colorLabel = new System.Windows.Forms.Label();
@@ -39,13 +40,15 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.labelDescription = new System.Windows.Forms.Label();
             this.descriptionTextBox = new System.Windows.Forms.RichTextBox();
-            this.saveActivityButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.labelTime = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.timeTextBox = new System.Windows.Forms.TextBox();
             this.labelMinutes = new System.Windows.Forms.Label();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.saveActivityButton = new System.Windows.Forms.Button();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.deletePicBox = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -53,6 +56,8 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.deletePicBox)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -62,8 +67,8 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel6, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.saveActivityButton, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel8, 0, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -207,19 +212,6 @@
             this.descriptionTextBox.TabIndex = 1;
             this.descriptionTextBox.Text = "";
             // 
-            // saveActivityButton
-            // 
-            this.saveActivityButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.saveActivityButton.BackColor = System.Drawing.Color.Honeydew;
-            this.saveActivityButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveActivityButton.Location = new System.Drawing.Point(269, 438);
-            this.saveActivityButton.Name = "saveActivityButton";
-            this.saveActivityButton.Size = new System.Drawing.Size(264, 95);
-            this.saveActivityButton.TabIndex = 0;
-            this.saveActivityButton.Text = "Save Activity";
-            this.saveActivityButton.UseVisualStyleBackColor = false;
-            this.saveActivityButton.Click += new System.EventHandler(this.saveActivityButton_Click);
-            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -283,9 +275,50 @@
             this.labelMinutes.TabIndex = 3;
             this.labelMinutes.Text = "minutes\r\n";
             // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 3;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel8.Controls.Add(this.saveActivityButton, 1, 0);
+            this.tableLayoutPanel8.Controls.Add(this.deletePicBox, 2, 0);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 435);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 1;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(796, 102);
+            this.tableLayoutPanel8.TabIndex = 5;
+            // 
+            // saveActivityButton
+            // 
+            this.saveActivityButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.saveActivityButton.BackColor = System.Drawing.Color.Honeydew;
+            this.saveActivityButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveActivityButton.Location = new System.Drawing.Point(266, 3);
+            this.saveActivityButton.Name = "saveActivityButton";
+            this.saveActivityButton.Size = new System.Drawing.Size(264, 95);
+            this.saveActivityButton.TabIndex = 1;
+            this.saveActivityButton.Text = "Save Activity";
+            this.saveActivityButton.UseVisualStyleBackColor = false;
+            this.saveActivityButton.Click += new System.EventHandler(this.saveActivityButton_Click);
+            // 
             // colorDialog
             // 
             this.colorDialog.Color = System.Drawing.Color.Yellow;
+            // 
+            // deletePicBox
+            // 
+            this.deletePicBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.deletePicBox.Image = ((System.Drawing.Image)(resources.GetObject("deletePicBox.Image")));
+            this.deletePicBox.Location = new System.Drawing.Point(733, 39);
+            this.deletePicBox.Name = "deletePicBox";
+            this.deletePicBox.Size = new System.Drawing.Size(60, 60);
+            this.deletePicBox.TabIndex = 2;
+            this.deletePicBox.TabStop = false;
+            this.deletePicBox.Visible = false;
+            this.deletePicBox.Click += new System.EventHandler(this.deletePicBox_Click);
             // 
             // NewActivityPrompt
             // 
@@ -308,6 +341,8 @@
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            this.tableLayoutPanel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.deletePicBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -318,7 +353,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.TextBox nameTextBox;
-        private System.Windows.Forms.Button saveActivityButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
@@ -332,5 +366,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.Button colorButton;
         private System.Windows.Forms.ColorDialog colorDialog;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
+        private System.Windows.Forms.Button saveActivityButton;
+        private System.Windows.Forms.PictureBox deletePicBox;
     }
 }

@@ -57,9 +57,8 @@ namespace Rain
         {
             updateDropDownFields();
             CurrentLessonName = selectLessonDropDown.Text;
-            loadCurrentLessonData();           
+            loadCurrentLessonData();
 
-            Console.WriteLine("calling paint method");
             //this.Paint += new System.Windows.Forms.PaintEventHandler(this.LessonPlanning_Paint);
             this.DoubleBuffered = true;
             //this.Invalidate();           
@@ -260,7 +259,7 @@ namespace Rain
 
         private void newActivityButton_Click(object sender, EventArgs e)
         {
-            using (NewActivityPrompt prompt = new NewActivityPrompt("", "", 0, Color.Yellow))
+            using (NewActivityPrompt prompt = new NewActivityPrompt("", "", 0, Color.Yellow, -1))
             {
                 this.Enabled = false;
                 prompt.ShowDialog();
@@ -515,12 +514,10 @@ namespace Rain
             // if area double clicked was not an activity, ignore
             if (actIndex < 0) { return; }
 
-            Console.WriteLine("Double clicked on activity " + actIndex);
-
             JArray activities = getActivities(CurrentLesson);
             JObject act = (JObject)activities[actIndex];
 
-            using (NewActivityPrompt prompt = new NewActivityPrompt(getName(act), getDescription(act), getTime(act), getColor(act)))
+            using (NewActivityPrompt prompt = new NewActivityPrompt(getName(act), getDescription(act), getTime(act), getColor(act), actIndex))
             {
                 this.Enabled = false;
                 prompt.ShowDialog();
@@ -529,19 +526,26 @@ namespace Rain
                 // escape (do nothing) if user X'd out of Activity Editing prompt (activityTime returned 0)
                 if (!prompt.isSaved()) { return; }
 
-                // if input for new activity was valid:
+                // if activity is marked to be deleted, delete the activity and escape
+                if (prompt.isDeleted())
+                {
+                    activities.RemoveAt(actIndex);
+                }
+                // otherwise, if input for new activity was valid:
+                else
+                {
+                    // create a updated activity based on user input data from prompt
+                    JObject updatedAct = new JObject(
+                        new JProperty("name", prompt.getActivityName()),
+                        new JProperty("description", prompt.getActivityDescription()),
+                        new JProperty("time", prompt.getActivityTime()),
+                        new JProperty("color", prompt.getActivityColor().ToArgb().ToString())
+                    );
 
-                // create a updated activity based on user input data from prompt
-                JObject updatedAct = new JObject(
-                    new JProperty("name", prompt.getActivityName()),
-                    new JProperty("description", prompt.getActivityDescription()),
-                    new JProperty("time", prompt.getActivityTime()),
-                    new JProperty("color", prompt.getActivityColor().ToArgb().ToString())
-                );
-
-                // update said activity in the activity list
-                activities[actIndex] = updatedAct;
-
+                    // update said activity in the activity list
+                    activities[actIndex] = updatedAct;
+                }
+                
                 // update current lesson data to reflect updated activity list
                 CurrentLesson["activities"] = activities;
 

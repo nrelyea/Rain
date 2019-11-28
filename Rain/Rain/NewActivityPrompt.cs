@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,30 +19,44 @@ namespace Rain
         public double ActivityTime = 0;
         public Color ActivityColor;
 
-        public bool Saved = false;
+        public int ActivityIndex;
 
-        public NewActivityPrompt(string name, string desc, double time, Color clr)
+        public bool Saved = false;
+        public bool Deleted = false;
+
+        public NewActivityPrompt(string name, string desc, double time, Color clr, int index)
         {
             InitializeComponent();
 
-        ActivityName = name;
-        ActivityDescription = desc;
-        ActivityTime = time;
-        ActivityColor = clr;
-    }
+            ActivityName = name;
+            ActivityDescription = desc;
+            ActivityTime = time;
+            ActivityColor = clr;
+
+            ActivityIndex = index;
+        }
 
         private void NewActivityPrompt_Load(object sender, EventArgs e)
         {
             this.CenterToScreen();
             updateColor(ActivityColor);
 
-            if (ActivityTime > 0) 
+            // if this prompt is being loaded from an existing activity
+            if (ActivityIndex > -1) 
             {
                 nameTextBox.Text = ActivityName;
                 descriptionTextBox.Text = ActivityDescription;
-                timeTextBox.Text = ActivityTime.ToString(); 
+                timeTextBox.Text = ActivityTime.ToString();
+
+                // load delete option & icon
+                Image deleteImage = ResizeImage(Image.FromFile("c:../../delete.png"), deletePicBox.Width, deletePicBox.Height);
+                deletePicBox.Image = deleteImage;
+                deletePicBox.Show();
             }
+
             colorDialog.Color = ActivityColor;
+
+            
 
         }
 
@@ -94,12 +110,57 @@ namespace Rain
             return true;
         }
 
+        // resizes an image to a given width and height
+        public Bitmap ResizeImage(Image image, int width, int height)
+        {
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
+        }
+
+        private void deletePicBox_Click(object sender, EventArgs e)
+        {
+            string nameSnippet = "";
+            if (ActivityName.Length > 0)
+            {
+                nameSnippet = " (" + ActivityName + ")";
+            }
+
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this activity?" + nameSnippet,
+                "Confirm Deletion", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Saved = true;
+                Deleted = true;
+                this.Close();
+            }
+        }
+
         public string getActivityName() { return ActivityName; }
         public string getActivityDescription() { return ActivityDescription; }
         public double getActivityTime() { return ActivityTime; }
         public Color getActivityColor() { return ActivityColor; }
 
         public bool isSaved() { return Saved; }
+        public bool isDeleted() { return Deleted; }
 
         
     }
