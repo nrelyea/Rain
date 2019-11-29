@@ -30,9 +30,7 @@ namespace Rain
         public Point panLocation;
         public int panWidth;
 
-        bool MouseIsDown = false;
         Point InitialMouseLocation;
-        Point MouseDownLocation;
         int SelectedActivityIndex;
 
         public int paintCount;
@@ -88,7 +86,7 @@ namespace Rain
             string lessonName;
             int lessonTimeLimit;
 
-            using (NewLessonPrompt prompt = new NewLessonPrompt(ClassName))
+            using (NewLessonPrompt prompt = new NewLessonPrompt(ClassName, "", 0))
             {
                 this.Enabled = false;
                 prompt.ShowDialog();
@@ -116,6 +114,71 @@ namespace Rain
 
         }
 
+        private void editLessonButton_Click(object sender, EventArgs e)
+        {
+            using (NewLessonPrompt prompt = new NewLessonPrompt(ClassName, CurrentLessonName, (int)CurrentLesson["timeLimit"]))
+            {
+                this.Enabled = false;
+                prompt.ShowDialog();
+                this.Enabled = true;
+
+                //if (prompt.getLessonTimeLimit() <= 0) { return; }
+
+                // update data name to reflect any potential changes
+                System.IO.File.Move(getLessonPath(CurrentLessonName), getLessonPath(prompt.getLessonName()));
+
+                CurrentLessonName = prompt.getLessonName();
+                CurrentLesson["timeLimit"] = prompt.getLessonTimeLimit();
+
+                saveCurrentLessonData();
+
+                updateDropDownFields();
+
+
+                //lessonName = prompt.getLessonName();
+                //lessonTimeLimit = prompt.getLessonTimeLimit();
+            }
+        }
+
+        private void deleteLessonButton_Click(object sender, EventArgs e)
+        {
+            string lessonToDelete = selectLessonDropDown.Text;
+
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete '"
+                + lessonToDelete + "' and all of its contents?",
+                "Confirm Deletion of " + lessonToDelete, MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                while (true)
+                {
+                    string enteredName = Interaction.InputBox("\nUse the box below to type '" + lessonToDelete +
+                    "' to confirm the deletion of this lesson", "Confirm Deletion of " + lessonToDelete, "");
+                    if (enteredName.Length > 0)
+                    {
+                        if (enteredName != lessonToDelete)
+                        {
+                            MessageBox.Show("The lesson name you just typed did not match the name of the lesson" +
+                                " you are trying to delete.\n\nPlease re-enter the lesson name");
+                        }
+                        else
+                        {
+                            File.Delete(getLessonPath(lessonToDelete));
+                            updateDropDownFields();
+
+                            MessageBox.Show("The lesson '" + lessonToDelete + "' has been deleted.");
+
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                }
+            }
+        }
+
 
 
         // update drop down fields to correctly represent current lessons in this class
@@ -137,10 +200,14 @@ namespace Rain
             {
                 selectLessonDropDown.Text = pathToFile(pathArray[0]);
                 deleteLessonButton.Show();
+                editLessonButton.Show();
+                newActivityButton.Show();
             }
             else
             {
                 deleteLessonButton.Hide();
+                editLessonButton.Hide();
+                newActivityButton.Hide();
             }
 
 
@@ -149,8 +216,11 @@ namespace Rain
         // update CurrentLesson JObject to reflect contents of file under CurrentLessonName
         private void loadCurrentLessonData()
         {
-            string lessonPath = @"Classes\\" + ClassName + "\\Lessons\\" + CurrentLessonName + ".json";
-            CurrentLesson = JObject.Parse(File.ReadAllText(lessonPath));
+            if(CurrentLessonName.Length > 0)
+            {
+                string lessonPath = @"Classes\\" + ClassName + "\\Lessons\\" + CurrentLessonName + ".json";
+                CurrentLesson = JObject.Parse(File.ReadAllText(lessonPath));
+            }          
         }
 
         // update JSON file for lesson to reflect contents of CurrentLesson
@@ -218,44 +288,7 @@ namespace Rain
             File.WriteAllText(@"Classes\\" + ClassName + "\\Lessons\\" + lessonName + ".json", lesson.ToString());
         }
 
-        private void deleteLessonButton_Click(object sender, EventArgs e)
-        {
-            string lessonToDelete = selectLessonDropDown.Text;
-
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete '"
-                + lessonToDelete + "' and all of its contents?",
-                "Confirm Deletion of " + lessonToDelete, MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                while (true)
-                {
-                    string enteredName = Interaction.InputBox("\nUse the box below to type '" + lessonToDelete +
-                    "' to confirm the deletion of this lesson", "Confirm Deletion of " + lessonToDelete, "");
-                    if (enteredName.Length > 0)
-                    {
-                        if (enteredName != lessonToDelete)
-                        {
-                            MessageBox.Show("The lesson name you just typed did not match the name of the lesson" +
-                                " you are trying to delete.\n\nPlease re-enter the lesson name");
-                        }
-                        else
-                        {
-                            File.Delete(getLessonPath(lessonToDelete));                            
-                            updateDropDownFields();
-
-                            MessageBox.Show("The lesson '" + lessonToDelete + "' has been deleted.");
-
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        break;
-                    }
-
-                }
-            }
-        }
+        
 
         private void newActivityButton_Click(object sender, EventArgs e)
         {
@@ -304,7 +337,8 @@ namespace Rain
 
         private void LessonPlanning_Paint(object sender, System.Windows.Forms.PaintEventArgs args)
         {
-
+            // if drop down text is blank (no lesson selected / available) don't paint anything
+            if(selectLessonDropDown.Text.Length < 1) { return; }
 
             // setting reference location for activities drawing to match sidebar (1/3 across screen)
             panLocation = new Point((this.Width / 3) + 4, 9);
@@ -559,9 +593,18 @@ namespace Rain
 
         }
 
-        private void activitiesPanel_MouseUp(object sender, MouseEventArgs e)
+        // if dropdown value has changed, update lesson data
+        private void selectLessonDropDown_TextChanged(object sender, EventArgs e)
         {
-            //MouseIsDown = false;
+            if(selectLessonDropDown.Text.Length > 0)
+            {
+                CurrentLessonName = selectLessonDropDown.Text;
+                loadCurrentLessonData();
+
+                Invalidate();
+            }           
         }
+
+
     }    
 }

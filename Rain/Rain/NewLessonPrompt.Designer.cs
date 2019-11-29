@@ -82,11 +82,11 @@
             this.labelName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelName.AutoSize = true;
             this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelName.Location = new System.Drawing.Point(7, 45);
+            this.labelName.Location = new System.Drawing.Point(46, 45);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(315, 29);
+            this.labelName.Size = new System.Drawing.Size(238, 29);
             this.labelName.TabIndex = 0;
-            this.labelName.Text = "Enter a name for this lesson:";
+            this.labelName.Text = "Name for this lesson:";
             // 
             // nameTextBox
             // 
@@ -106,7 +106,7 @@
             this.createLessonButton.Name = "createLessonButton";
             this.createLessonButton.Size = new System.Drawing.Size(264, 111);
             this.createLessonButton.TabIndex = 0;
-            this.createLessonButton.Text = "Create Lesson";
+            this.createLessonButton.Text = "Save Lesson";
             this.createLessonButton.UseVisualStyleBackColor = false;
             this.createLessonButton.Click += new System.EventHandler(this.createLessonButton_Click);
             // 
@@ -131,11 +131,11 @@
             this.labelTimeLimit.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelTimeLimit.AutoSize = true;
             this.labelTimeLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTimeLimit.Location = new System.Drawing.Point(18, 30);
+            this.labelTimeLimit.Location = new System.Drawing.Point(25, 45);
             this.labelTimeLimit.Name = "labelTimeLimit";
-            this.labelTimeLimit.Size = new System.Drawing.Size(294, 58);
+            this.labelTimeLimit.Size = new System.Drawing.Size(279, 29);
             this.labelTimeLimit.TabIndex = 0;
-            this.labelTimeLimit.Text = "Enter the time limit for this lesson:\r\n";
+            this.labelTimeLimit.Text = "Time limit for this lesson:\r\n";
             // 
             // tableLayoutPanel4
             // 

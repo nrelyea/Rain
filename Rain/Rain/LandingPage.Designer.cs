@@ -36,14 +36,14 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.selectClassDropDown = new System.Windows.Forms.ComboBox();
             this.selectClassLabel = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.logoPicBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPicBox)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -60,7 +60,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.LightGray;
-            this.splitContainer1.Panel2.Controls.Add(this.pictureBox1);
+            this.splitContainer1.Panel2.Controls.Add(this.logoPicBox);
             this.splitContainer1.Size = new System.Drawing.Size(800, 450);
             this.splitContainer1.SplitterDistance = 264;
             this.splitContainer1.TabIndex = 4;
@@ -164,18 +164,19 @@
             this.selectClassLabel.Text = "Select a Class\r\n↓\r\n\r\n";
             this.selectClassLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // pictureBox1
+            // logoPicBox
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Rain.Properties.Resources.Logo_11;
-            this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(19, 12);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(500, 500);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.logoPicBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.logoPicBox.BackColor = System.Drawing.Color.Transparent;
+            this.logoPicBox.Image = global::Rain.Properties.Resources.Logo_11;
+            this.logoPicBox.ImageLocation = "";
+            this.logoPicBox.Location = new System.Drawing.Point(19, 12);
+            this.logoPicBox.Margin = new System.Windows.Forms.Padding(0);
+            this.logoPicBox.Name = "logoPicBox";
+            this.logoPicBox.Size = new System.Drawing.Size(500, 500);
+            this.logoPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logoPicBox.TabIndex = 0;
+            this.logoPicBox.TabStop = false;
             // 
             // LandingPage
             // 
@@ -192,7 +193,7 @@
             this.splitContainer1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPicBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -207,6 +208,6 @@
         private System.Windows.Forms.Label selectClassLabel;
         private System.Windows.Forms.Button deleteClassButton;
         private System.Windows.Forms.Button newClassButton;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox logoPicBox;
     }
 }

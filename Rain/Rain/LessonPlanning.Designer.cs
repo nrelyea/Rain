@@ -35,6 +35,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.selectLessonDropDown = new System.Windows.Forms.ComboBox();
             this.selectLessonLabel = new System.Windows.Forms.Label();
+            this.editLessonButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.newActivityButton = new System.Windows.Forms.Button();
@@ -60,7 +61,7 @@
             this.tableLayoutPanelMAIN.Name = "tableLayoutPanelMAIN";
             this.tableLayoutPanelMAIN.RowCount = 1;
             this.tableLayoutPanelMAIN.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelMAIN.Size = new System.Drawing.Size(800, 450);
+            this.tableLayoutPanelMAIN.Size = new System.Drawing.Size(800, 436);
             this.tableLayoutPanelMAIN.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -68,18 +69,21 @@
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.deleteLessonButton, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.deleteLessonButton, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.newLessonButton, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.editLessonButton, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(260, 444);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(260, 430);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // deleteLessonButton
@@ -87,9 +91,9 @@
             this.deleteLessonButton.BackColor = System.Drawing.Color.Honeydew;
             this.deleteLessonButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.deleteLessonButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteLessonButton.Location = new System.Drawing.Point(3, 395);
+            this.deleteLessonButton.Location = new System.Drawing.Point(3, 399);
             this.deleteLessonButton.Name = "deleteLessonButton";
-            this.deleteLessonButton.Size = new System.Drawing.Size(254, 46);
+            this.deleteLessonButton.Size = new System.Drawing.Size(254, 28);
             this.deleteLessonButton.TabIndex = 4;
             this.deleteLessonButton.Text = "Delete Lesson";
             this.deleteLessonButton.UseVisualStyleBackColor = false;
@@ -100,9 +104,9 @@
             this.newLessonButton.BackColor = System.Drawing.Color.Honeydew;
             this.newLessonButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.newLessonButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newLessonButton.Location = new System.Drawing.Point(3, 346);
+            this.newLessonButton.Location = new System.Drawing.Point(3, 335);
             this.newLessonButton.Name = "newLessonButton";
-            this.newLessonButton.Size = new System.Drawing.Size(254, 43);
+            this.newLessonButton.Size = new System.Drawing.Size(254, 26);
             this.newLessonButton.TabIndex = 3;
             this.newLessonButton.Text = "New Lesson";
             this.newLessonButton.UseVisualStyleBackColor = false;
@@ -121,7 +125,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(254, 93);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(254, 90);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // selectLessonDropDown
@@ -131,10 +135,11 @@
             this.selectLessonDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.selectLessonDropDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectLessonDropDown.FormattingEnabled = true;
-            this.selectLessonDropDown.Location = new System.Drawing.Point(3, 65);
+            this.selectLessonDropDown.Location = new System.Drawing.Point(3, 63);
             this.selectLessonDropDown.Name = "selectLessonDropDown";
             this.selectLessonDropDown.Size = new System.Drawing.Size(248, 45);
             this.selectLessonDropDown.TabIndex = 1;
+            this.selectLessonDropDown.TextChanged += new System.EventHandler(this.selectLessonDropDown_TextChanged);
             // 
             // selectLessonLabel
             // 
@@ -143,10 +148,23 @@
             this.selectLessonLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectLessonLabel.Location = new System.Drawing.Point(3, 0);
             this.selectLessonLabel.Name = "selectLessonLabel";
-            this.selectLessonLabel.Size = new System.Drawing.Size(248, 62);
+            this.selectLessonLabel.Size = new System.Drawing.Size(248, 60);
             this.selectLessonLabel.TabIndex = 2;
             this.selectLessonLabel.Text = "Select a Lesson\r\n↓";
             this.selectLessonLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // editLessonButton
+            // 
+            this.editLessonButton.BackColor = System.Drawing.Color.Honeydew;
+            this.editLessonButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.editLessonButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.editLessonButton.Location = new System.Drawing.Point(3, 367);
+            this.editLessonButton.Name = "editLessonButton";
+            this.editLessonButton.Size = new System.Drawing.Size(254, 26);
+            this.editLessonButton.TabIndex = 5;
+            this.editLessonButton.Text = "Edit Lesson";
+            this.editLessonButton.UseVisualStyleBackColor = false;
+            this.editLessonButton.Click += new System.EventHandler(this.editLessonButton_Click);
             // 
             // tableLayoutPanel7
             // 
@@ -161,7 +179,7 @@
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(528, 444);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(528, 430);
             this.tableLayoutPanel7.TabIndex = 2;
             // 
             // tableLayoutPanel8
@@ -177,7 +195,7 @@
             this.tableLayoutPanel8.RowCount = 2;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(74, 438);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(74, 424);
             this.tableLayoutPanel8.TabIndex = 1;
             // 
             // newActivityButton
@@ -185,7 +203,7 @@
             this.newActivityButton.BackColor = System.Drawing.Color.Honeydew;
             this.newActivityButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.newActivityButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newActivityButton.Location = new System.Drawing.Point(25, 259);
+            this.newActivityButton.Location = new System.Drawing.Point(25, 245);
             this.newActivityButton.Margin = new System.Windows.Forms.Padding(25);
             this.newActivityButton.Name = "newActivityButton";
             this.newActivityButton.Size = new System.Drawing.Size(24, 154);
@@ -215,19 +233,18 @@
             this.activitiesPanel.Location = new System.Drawing.Point(10, 10);
             this.activitiesPanel.Margin = new System.Windows.Forms.Padding(10);
             this.activitiesPanel.Name = "activitiesPanel";
-            this.activitiesPanel.Size = new System.Drawing.Size(428, 424);
+            this.activitiesPanel.Size = new System.Drawing.Size(428, 410);
             this.activitiesPanel.TabIndex = 3;
             this.activitiesPanel.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.activitiesPanel_MouseDoubleClick);
             this.activitiesPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.activitiesPanel_MouseDown);
             this.activitiesPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.activitiesPanel_MouseMove);
-            this.activitiesPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.activitiesPanel_MouseUp);
             // 
             // LessonPlanning
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 436);
             this.Controls.Add(this.tableLayoutPanelMAIN);
             this.DoubleBuffered = true;
             this.Name = "LessonPlanning";
@@ -257,5 +274,6 @@
         private System.Windows.Forms.Button newActivityButton;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Panel activitiesPanel;
+        private System.Windows.Forms.Button editLessonButton;
     }
 }

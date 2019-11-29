@@ -16,18 +16,33 @@ namespace Rain
         public string ClassName;
 
         public string LessonName;
-        public int LessonTimeLimit = 0;
+        public int LessonTimeLimit;
 
-        public NewLessonPrompt(string className)
+        public bool Editing = false;
+
+        public NewLessonPrompt(string className, string name, int time)
         {
             InitializeComponent();
 
             ClassName = className;
+
+            LessonName = name;
+            LessonTimeLimit = time;
         }
 
         private void NewLessonPrompt_Load(object sender, EventArgs e)
         {
             this.CenterToScreen();
+
+            if(LessonTimeLimit > 0)
+            {
+                Editing = true;
+
+                this.Text = "Edit Lesson: '" + LessonName + "'";
+
+                nameTextBox.Text = LessonName;
+                timeLimitTextBox.Text = LessonTimeLimit.ToString();
+            }
         }
 
         private void createLessonButton_Click(object sender, EventArgs e)
@@ -36,7 +51,7 @@ namespace Rain
 
             if (validLessonName(lessonName) && lessonName.Length > 0)
             {
-                if (!lessonAlreadyExists(lessonName))
+                if (!lessonAlreadyExists(lessonName) || Editing)
                 {
                     if (validTimeLimit(timeLimitTextBox.Text))
                     {
@@ -70,6 +85,7 @@ namespace Rain
         
         private bool lessonAlreadyExists(string str)
         {
+            
             // get all lesson file paths from Lessons directory and put them in an array
             string[] pathArray = Directory.GetFiles(@"Classes\" + ClassName + "\\Lessons\\", "*.json",
                                                      SearchOption.TopDirectoryOnly);
@@ -121,15 +137,10 @@ namespace Rain
             return true;
         }
 
-        public string getLessonName()
-        {
-            return LessonName;
-        }
-
-        public int getLessonTimeLimit()
-        {
-            return LessonTimeLimit;
-        }
+        public string getLessonName() { return LessonName; }
+        public int getLessonTimeLimit() { return LessonTimeLimit; }
+        
+        public bool isEdited() { return Editing; }
 
 
     }

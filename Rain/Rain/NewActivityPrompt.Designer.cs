@@ -47,8 +47,8 @@
             this.labelMinutes = new System.Windows.Forms.Label();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.saveActivityButton = new System.Windows.Forms.Button();
-            this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.deletePicBox = new System.Windows.Forms.PictureBox();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -304,10 +304,6 @@
             this.saveActivityButton.UseVisualStyleBackColor = false;
             this.saveActivityButton.Click += new System.EventHandler(this.saveActivityButton_Click);
             // 
-            // colorDialog
-            // 
-            this.colorDialog.Color = System.Drawing.Color.Yellow;
-            // 
             // deletePicBox
             // 
             this.deletePicBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -320,6 +316,10 @@
             this.deletePicBox.Visible = false;
             this.deletePicBox.Click += new System.EventHandler(this.deletePicBox_Click);
             // 
+            // colorDialog
+            // 
+            this.colorDialog.Color = System.Drawing.Color.Yellow;
+            // 
             // NewActivityPrompt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -327,7 +327,7 @@
             this.ClientSize = new System.Drawing.Size(802, 541);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "NewActivityPrompt";
-            this.Text = "Edit Activity";
+            this.Text = "New Activity";
             this.Load += new System.EventHandler(this.NewActivityPrompt_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);

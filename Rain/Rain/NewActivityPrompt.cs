@@ -44,6 +44,8 @@ namespace Rain
             // if this prompt is being loaded from an existing activity
             if (ActivityIndex > -1) 
             {
+                this.Text = "Edit Activity: " + ActivityName;
+
                 nameTextBox.Text = ActivityName;
                 descriptionTextBox.Text = ActivityDescription;
                 timeTextBox.Text = ActivityTime.ToString();
