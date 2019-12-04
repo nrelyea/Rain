@@ -36,6 +36,7 @@
             this.selectLessonDropDown = new System.Windows.Forms.ComboBox();
             this.selectLessonLabel = new System.Windows.Forms.Label();
             this.editLessonButton = new System.Windows.Forms.Button();
+            this.infoLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.newActivityButton = new System.Windows.Forms.Button();
@@ -73,6 +74,7 @@
             this.tableLayoutPanel1.Controls.Add(this.newLessonButton, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.editLessonButton, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.infoLabel, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -166,6 +168,18 @@
             this.editLessonButton.UseVisualStyleBackColor = false;
             this.editLessonButton.Click += new System.EventHandler(this.editLessonButton_Click);
             // 
+            // infoLabel
+            // 
+            this.infoLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.infoLabel.AutoSize = true;
+            this.infoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoLabel.Location = new System.Drawing.Point(45, 195);
+            this.infoLabel.Name = "infoLabel";
+            this.infoLabel.Size = new System.Drawing.Size(170, 37);
+            this.infoLabel.TabIndex = 6;
+            this.infoLabel.Text = "lesson info";
+            this.infoLabel.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.infoLabel_MouseDoubleClick);
+            // 
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.BackColor = System.Drawing.Color.Transparent;
@@ -253,6 +267,7 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.LessonPlanning_Paint);
             this.tableLayoutPanelMAIN.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
@@ -275,5 +290,6 @@
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Panel activitiesPanel;
         private System.Windows.Forms.Button editLessonButton;
+        private System.Windows.Forms.Label infoLabel;
     }
 }

@@ -54,7 +54,7 @@ namespace Rain
             
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void GroupForming_Load(object sender, EventArgs e)
         {
 
         }

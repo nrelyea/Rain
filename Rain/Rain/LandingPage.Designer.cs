@@ -168,7 +168,6 @@
             // 
             this.logoPicBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.logoPicBox.BackColor = System.Drawing.Color.Transparent;
-            this.logoPicBox.Image = global::Rain.Properties.Resources.Logo_11;
             this.logoPicBox.ImageLocation = "";
             this.logoPicBox.Location = new System.Drawing.Point(19, 12);
             this.logoPicBox.Margin = new System.Windows.Forms.Padding(0);

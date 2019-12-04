@@ -26,7 +26,7 @@ namespace Rain
 
         private void LandingPage_Load(object sender, EventArgs e)
         {
-            Image logoImage = ResizeImage(Image.FromFile("c:../../Logo 1.png"), logoPicBox.Width, logoPicBox.Height);
+            Image logoImage = ResizeImage(Image.FromFile("Assets/Logo 1.png"), logoPicBox.Width, logoPicBox.Height);
             logoPicBox.Image = logoImage;
         }
 

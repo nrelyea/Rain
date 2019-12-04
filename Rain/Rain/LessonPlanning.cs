@@ -149,6 +149,12 @@ namespace Rain
             }
         }
 
+        // double clicking info label also brings up lesson editing 
+        private void infoLabel_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            editLessonButton_Click(sender, e);
+        }
+
         // find index of newly created lesson name in drop down list and make it the selected one
         private void adjustDropDown(string lsnName)
         {
@@ -245,8 +251,19 @@ namespace Rain
             {
                 string lessonPath = @"Classes\\" + ClassName + "\\Lessons\\" + CurrentLessonName + ".json";
                 CurrentLesson = JObject.Parse(File.ReadAllText(lessonPath));
-            }          
+            }
+
+            // update the main info label
+            infoLabel.Text = "";
+            string desc = (string)CurrentLesson["description"];
+            if (desc.Length > 0)
+            {
+                infoLabel.Text = desc + "\n\n";
+
+            }
+            infoLabel.Text += "Lesson Time Limit:   " + (string)CurrentLesson["timeLimit"] + " minutes";
         }
+
 
         // update JSON file for lesson to reflect contents of CurrentLesson
         private void saveCurrentLessonData()
@@ -270,10 +287,11 @@ namespace Rain
             return path;
         }
 
+        // create and save a template lesson for testing with a title, description, time limit, and 3 activities
         private void testCreateLesson()
         {
             string lessonName = "lesson 1";
-            string description = "the first lesson!";
+            string description = "The first lesson!";
             int timeLimit = 55;
 
             JArray activities = new JArray();
@@ -311,13 +329,11 @@ namespace Rain
             );
 
             File.WriteAllText(@"Classes\\" + ClassName + "\\Lessons\\" + lessonName + ".json", lesson.ToString());
-        }
-
-        
+        }       
 
         private void newActivityButton_Click(object sender, EventArgs e)
         {
-            using (NewActivityPrompt prompt = new NewActivityPrompt("", "", 0, Color.Yellow, -1))
+            using (NewActivityPrompt prompt = new NewActivityPrompt("", "", 0, Color.White, -1))
             {
                 this.Enabled = false;
                 prompt.ShowDialog();
