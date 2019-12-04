@@ -16,17 +16,19 @@ namespace Rain
         public string ClassName;
 
         public string LessonName;
+        public string LessonDescription;
         public int LessonTimeLimit;
 
         public bool Editing = false;
 
-        public NewLessonPrompt(string className, string name, int time)
+        public NewLessonPrompt(string className, string name, string desc, int time)
         {
             InitializeComponent();
 
             ClassName = className;
 
             LessonName = name;
+            LessonDescription = desc;
             LessonTimeLimit = time;
         }
 
@@ -41,6 +43,7 @@ namespace Rain
                 this.Text = "Edit Lesson: '" + LessonName + "'";
 
                 nameTextBox.Text = LessonName;
+                descriptionTextBox.Text = LessonDescription;
                 timeLimitTextBox.Text = LessonTimeLimit.ToString();
             }
         }
@@ -48,6 +51,7 @@ namespace Rain
         private void createLessonButton_Click(object sender, EventArgs e)
         {
             string lessonName = nameTextBox.Text;
+            string lessonDescription = descriptionTextBox.Text;
 
             if (validLessonName(lessonName) && lessonName.Length > 0)
             {
@@ -56,6 +60,7 @@ namespace Rain
                     if (validTimeLimit(timeLimitTextBox.Text))
                     {
                         LessonName = lessonName;
+                        LessonDescription = lessonDescription;
                         LessonTimeLimit = Int32.Parse(timeLimitTextBox.Text);
                         this.Close();
                     }
@@ -138,10 +143,9 @@ namespace Rain
         }
 
         public string getLessonName() { return LessonName; }
+        public string getLessonDescription() { return LessonDescription; }
         public int getLessonTimeLimit() { return LessonTimeLimit; }
         
         public bool isEdited() { return Editing; }
-
-
     }
 }

@@ -84,9 +84,10 @@ namespace Rain
         private void newLessonButton_Click(object sender, EventArgs e)
         {
             string lessonName;
+            string lessonDescription;
             int lessonTimeLimit;
 
-            using (NewLessonPrompt prompt = new NewLessonPrompt(ClassName, "", 0))
+            using (NewLessonPrompt prompt = new NewLessonPrompt(ClassName, "", "", 0))
             {
                 this.Enabled = false;
                 prompt.ShowDialog();
@@ -96,11 +97,12 @@ namespace Rain
                 if (prompt.getLessonTimeLimit() <= 0) { return; }
 
                 lessonName = prompt.getLessonName();
+                lessonDescription = prompt.getLessonDescription();
                 lessonTimeLimit = prompt.getLessonTimeLimit();
             }
 
             JObject lessonObj = new JObject(
-                new JProperty("description", ""),
+                new JProperty("description", (string)lessonDescription),
                 new JProperty("timeLimit", (int)lessonTimeLimit),
                 new JProperty("activities", new JArray())
             );
@@ -109,6 +111,11 @@ namespace Rain
 
             updateDropDownFields();
 
+            CurrentLessonName = lessonName;
+            loadCurrentLessonData();
+
+            adjustDropDown(lessonName);
+            
             MessageBox.Show("Your new lesson '" + lessonName + "' has been created!\n\n" +
                             "Use the tools provided to modify and add to it!");
 
@@ -116,7 +123,7 @@ namespace Rain
 
         private void editLessonButton_Click(object sender, EventArgs e)
         {
-            using (NewLessonPrompt prompt = new NewLessonPrompt(ClassName, CurrentLessonName, (int)CurrentLesson["timeLimit"]))
+            using (NewLessonPrompt prompt = new NewLessonPrompt(ClassName, CurrentLessonName, (string)CurrentLesson["description"], (int)CurrentLesson["timeLimit"]))
             {
                 this.Enabled = false;
                 prompt.ShowDialog();
@@ -128,15 +135,31 @@ namespace Rain
                 System.IO.File.Move(getLessonPath(CurrentLessonName), getLessonPath(prompt.getLessonName()));
 
                 CurrentLessonName = prompt.getLessonName();
+                CurrentLesson["description"] = prompt.getLessonDescription();
                 CurrentLesson["timeLimit"] = prompt.getLessonTimeLimit();
 
                 saveCurrentLessonData();
 
                 updateDropDownFields();
 
+                adjustDropDown(prompt.getLessonName());
 
                 //lessonName = prompt.getLessonName();
                 //lessonTimeLimit = prompt.getLessonTimeLimit();
+            }
+        }
+
+        // find index of newly created lesson name in drop down list and make it the selected one
+        private void adjustDropDown(string lsnName)
+        {
+            // find index of newly created lesson name in drop down list and make it the selected one
+            for (int i = 0; i < selectLessonDropDown.Items.Count; i++)
+            {
+                if (selectLessonDropDown.Items[i].ToString() == lsnName)
+                {
+                    selectLessonDropDown.SelectedIndex = i;
+                    break;
+                }
             }
         }
 
@@ -164,6 +187,7 @@ namespace Rain
                         {
                             File.Delete(getLessonPath(lessonToDelete));
                             updateDropDownFields();
+                            Invalidate();
 
                             MessageBox.Show("The lesson '" + lessonToDelete + "' has been deleted.");
 
@@ -199,6 +223,7 @@ namespace Rain
             if(pathArray.Length > 0)
             {
                 selectLessonDropDown.Text = pathToFile(pathArray[0]);
+
                 deleteLessonButton.Show();
                 editLessonButton.Show();
                 newActivityButton.Show();
