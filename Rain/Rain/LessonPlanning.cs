@@ -53,6 +53,8 @@ namespace Rain
 
         private void LessonPlanning_Load(object sender, EventArgs e)
         {
+            this.Text = "Rain | " + ClassName + " | Lesson Planning";
+
             updateDropDownFields();
             CurrentLessonName = selectLessonDropDown.Text;
             loadCurrentLessonData();
@@ -70,7 +72,7 @@ namespace Rain
             ///*
             
             // TEMPORARY FOR TESTING: RESETS CURRENT LESSON TO TEMPLATE
-            testCreateLesson();
+            //testCreateLesson();
 
             MainMenu menu = new MainMenu(ClassName);
             menu.Show();
@@ -78,7 +80,6 @@ namespace Rain
 
             //*/
 
-            //this.Invalidate();
         }
 
         private void newLessonButton_Click(object sender, EventArgs e)
@@ -193,6 +194,7 @@ namespace Rain
                         {
                             File.Delete(getLessonPath(lessonToDelete));
                             updateDropDownFields();
+                            updateInfoLabel();
                             Invalidate();
 
                             MessageBox.Show("The lesson '" + lessonToDelete + "' has been deleted.");
@@ -222,7 +224,7 @@ namespace Rain
 
             // shorten all file paths to just lesson names and add them to the dropdown
             for(int i = 0; i < pathArray.Length; i++)
-            {
+            {   
                 selectLessonDropDown.Items.Add(pathToFile(pathArray[i]));
             }
 
@@ -233,12 +235,16 @@ namespace Rain
                 deleteLessonButton.Show();
                 editLessonButton.Show();
                 newActivityButton.Show();
+
+                selectLessonDropDown.Enabled = true;
             }
             else
             {
                 deleteLessonButton.Hide();
                 editLessonButton.Hide();
                 newActivityButton.Hide();
+
+                selectLessonDropDown.Enabled = false;
             }
 
 
@@ -247,14 +253,25 @@ namespace Rain
         // update CurrentLesson JObject to reflect contents of file under CurrentLessonName
         private void loadCurrentLessonData()
         {
-            if(CurrentLessonName.Length > 0)
+            this.Text = "Rain | " + ClassName + " | Lesson Planning";
+
+            if (CurrentLessonName.Length > 0)
             {
                 string lessonPath = @"Classes\\" + ClassName + "\\Lessons\\" + CurrentLessonName + ".json";
                 CurrentLesson = JObject.Parse(File.ReadAllText(lessonPath));
             }
 
-            // update the main info label
+            updateInfoLabel();
+        }
+
+        // update the main info label
+        private void updateInfoLabel()
+        {
             infoLabel.Text = "";
+
+            // if lesson list is blank, escape without writing anything
+            if(selectLessonDropDown.Items.Count == 0) { return; }
+
             string desc = (string)CurrentLesson["description"];
             if (desc.Length > 0)
             {

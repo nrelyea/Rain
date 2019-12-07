@@ -51,7 +51,7 @@ namespace Rain
                 timeTextBox.Text = ActivityTime.ToString();
 
                 // load delete option & icon
-                Image deleteImage = ResizeImage(Image.FromFile("Assets/delete.png"), deletePicBox.Width, deletePicBox.Height);
+                Image deleteImage = ResizeImage(Image.FromFile("Assets/TrashCan.png"), deletePicBox.Width, deletePicBox.Height);
                 deletePicBox.Image = deleteImage;
                 deletePicBox.Show();
             }

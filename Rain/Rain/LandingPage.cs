@@ -49,12 +49,15 @@ namespace Rain
                 selectClassDropDown.Text = directories[0];
 
                 loadClassButton.Show();
+                editClassButton.Show();
                 deleteClassButton.Show();
+
             }
             else
             {
                 loadClassButton.Hide();
-                deleteClassButton.Hide();   
+                editClassButton.Hide();
+                deleteClassButton.Hide();
             }
 
 
@@ -130,6 +133,50 @@ namespace Rain
                 }
             }
             
+        }
+
+        private void editClassButton_Click(object sender, EventArgs e)
+        {
+            string className = selectClassDropDown.Text;
+
+            while (true)
+            {
+                // prompt user to enter a new name for the class
+                string newName = Interaction.InputBox("Create a new class!\n\nUse the space below to name your new class.",
+                                                       "Edit Class Name: " + className, className);
+
+                // exit without doing anything if user entered same name as before or didn't change anything
+                if(newName == className) { return; }
+
+                // if a class name was entered, begin processing it
+                if (newName.Length > 0)
+                {
+                    // if class name is valid, proceed
+                    if (validClassName(newName))
+                    {
+                        Directory.Move("Classes\\" + className, "Classes\\" + newName);
+
+                        updateDropDownFields();
+
+                        MessageBox.Show("Class name successfully changed to '" + newName + "'!");
+
+                        return;
+
+                    }
+                    // if class name is invalid, let the user know, and then again present them with 
+                    //the option to change the class name to make it valid and retry
+                    else
+                    {
+                        MessageBox.Show("ERROR: Invalid Class Name!\n\n " +
+                                        "Please only use letters, numbers, and spaces\n" +
+                                        "The following characters are also allowed:  '  _  - ");
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
 
         // determines of class name user has entered is valid, as it will be the name of a folder

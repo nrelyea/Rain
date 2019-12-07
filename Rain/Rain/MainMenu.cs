@@ -21,17 +21,18 @@ namespace Rain
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
             ClassName = className;
-            //Console.WriteLine("Name of class loaded: " + ClassName);
+
+            
+        }
+        private void MainMenu_Load(object sender, EventArgs e)
+        {
+            this.Text = "Rain | " + ClassName + " | Main Menu";
 
             // disable certain options if student list is empty / doesn't exist
             if (!canLoadStudents())
             {
                 formGroupsButton.Hide();
             }
-        }
-        private void MainMenu_Load(object sender, EventArgs e)
-        {
-
         }
 
         // returns true if students.json file exists and contains at least one student
@@ -50,7 +51,7 @@ namespace Rain
                     return false;
                 }
             }
-            catch(Exception exc)
+            catch(Exception)
             {
                 return false;
             }           
@@ -77,7 +78,7 @@ namespace Rain
             this.Hide();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void lessonPlanningButton_Click(object sender, EventArgs e)
         {
             LessonPlanning plan = new LessonPlanning(ClassName);
             plan.Show();

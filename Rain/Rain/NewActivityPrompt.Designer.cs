@@ -195,11 +195,11 @@
             this.labelDescription.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelDescription.AutoSize = true;
             this.labelDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDescription.Location = new System.Drawing.Point(21, 18);
+            this.labelDescription.Location = new System.Drawing.Point(14, 18);
             this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(288, 58);
+            this.labelDescription.Size = new System.Drawing.Size(301, 58);
             this.labelDescription.TabIndex = 0;
-            this.labelDescription.Text = "(Optional) Description for this activity:";
+            this.labelDescription.Text = "Description for this activity: (Optional)";
             // 
             // descriptionTextBox
             // 

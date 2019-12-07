@@ -16,7 +16,7 @@ namespace Rain
     {
         public string ClassName { get; set; }
 
-        public string savedText;
+        public string SavedText;
 
         public EditStudents(string className)
         {
@@ -26,7 +26,12 @@ namespace Rain
             ClassName = className;
 
             UpdateTextBox();
-            savedText = mainTextBox.Text;
+            SavedText = mainTextBox.Text;
+        }
+
+        private void EditStudents_Load(object sender, EventArgs e)
+        {
+            this.Text = "Rain | " + ClassName + " | Edit Students";
         }
 
         private void UpdateTextBox()
@@ -37,20 +42,17 @@ namespace Rain
                 List<string> studentList = JsonConvert.DeserializeObject<List<string>>(json);
                 mainTextBox.Text = string.Join("\n", studentList.ToArray());
             }
-            catch (Exception exc1)
+            catch (Exception)
             {
 
             }
         }
 
-        private void EditStudents_Load(object sender, EventArgs e)
-        {
 
-        }
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            if(savedText != mainTextBox.Text)
+            if(SavedText != mainTextBox.Text)
             {
                 DialogResult dialogResult = MessageBox.Show("Warning: There are unsaved changes to the student list!\n\n" +
                     "Would you like to save your changes before returning to the Main Menu?", "Warning: Unsaved Changes", MessageBoxButtons.YesNo);
@@ -84,9 +86,11 @@ namespace Rain
                     }
                 }
                 File.WriteAllText(@"Classes\" + ClassName + "\\students.json", JsonConvert.SerializeObject(newStudentList));
-                savedText = mainTextBox.Text;
+                SavedText = mainTextBox.Text;
+
+                //System.Windows.Forms.MessageBox.Show("The student list was saved");
             }
-            catch (Exception exc2)
+            catch (Exception)
             {
                 System.Windows.Forms.MessageBox.Show("There was an error saving these student names");
             }
