@@ -73,7 +73,7 @@ namespace Rain
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            LandingPage page = new LandingPage();
+            LandingPage page = new LandingPage(ClassName);
             page.Show();
             this.Hide();
         }

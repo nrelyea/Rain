@@ -156,7 +156,7 @@ namespace Rain
             editLessonButton_Click(sender, e);
         }
 
-        // find index of newly created lesson name in drop down list and make it the selected one
+        // find index of newly created / edited lesson name in drop down list and make it the selected one
         private void adjustDropDown(string lsnName)
         {
             // find index of newly created lesson name in drop down list and make it the selected one

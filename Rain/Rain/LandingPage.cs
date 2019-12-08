@@ -16,12 +16,17 @@ namespace Rain
 {
     public partial class LandingPage : Form
     {
-        public LandingPage()
+        string LoadedClassName;
+
+        public LandingPage(string name)
         {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
 
+            LoadedClassName = name;
+
             updateDropDownFields();
+            adjustDropDown(name);
         }
 
         private void LandingPage_Load(object sender, EventArgs e)
@@ -63,6 +68,20 @@ namespace Rain
 
         }
 
+        // find instance of newly created / edited class name in drop down list and make it the selected one
+        private void adjustDropDown(string lsnName)
+        {
+            // find index of newly created lesson name in drop down list and make it the selected one
+            for (int i = 0; i < selectClassDropDown.Items.Count; i++)
+            {
+                if (selectClassDropDown.Items[i].ToString() == lsnName)
+                {
+                    selectClassDropDown.SelectedIndex = i;
+                    break;
+                }
+            }
+        }
+
 
 
         private void loadClassButton_Click(object sender, EventArgs e)
@@ -82,8 +101,8 @@ namespace Rain
                 string newClass = Interaction.InputBox("Create a new class!\n\nUse the space below to name your new class.", 
                                                        "Class Creation", defaultString);
 
-                // if a class name was entered, begin processing it
-                if (newClass.Length > 0)
+                // if a class name was entered that is not just spaces, begin processing it
+                if (newClass.Length > 0 && !string.IsNullOrWhiteSpace(newClass))
                 {
                     // if class name is valid, proceed
                     if (validClassName(newClass))
@@ -97,12 +116,13 @@ namespace Rain
                                         "Either enter a different class name, or first delete the current class that shares this name");
                             defaultString = newClass;
                         }
-                        // otherwise, create the new class      MINOR BUG: if class name is only spaces, nothing will happen
+                        // otherwise, create the new class      
                         else
                         {
                             Directory.CreateDirectory("Classes\\" + newClass);
                             Directory.CreateDirectory("Classes\\" + newClass + "\\Lessons");
                             updateDropDownFields();
+                            adjustDropDown(newClass);
 
                             DialogResult dialogResult = MessageBox.Show("Your new class '" + newClass + "' has been created!\n\n" +
                                 "Would you like to start setting up this class now?", "'"+ newClass + "' created!", MessageBoxButtons.YesNo);
@@ -114,7 +134,7 @@ namespace Rain
                             }
 
                             //Console.WriteLine("Created New Class: " + newClass);
-                            break;
+                            return;
                         }                       
                     }
                     // if class name is invalid, let the user know, and then again present them with 
@@ -129,7 +149,7 @@ namespace Rain
                 }
                 else
                 {
-                    break;
+                    return;
                 }
             }
             
@@ -146,7 +166,8 @@ namespace Rain
                                                        "Edit Class Name: " + className, className);
 
                 // exit without doing anything if user entered same name as before or didn't change anything
-                if(newName == className) { return; }
+                // also exit if new name was null or white space
+                if(newName == className || string.IsNullOrWhiteSpace(newName)) { return; }
 
                 // if a class name was entered, begin processing it
                 if (newName.Length > 0)
@@ -157,6 +178,7 @@ namespace Rain
                         Directory.Move("Classes\\" + className, "Classes\\" + newName);
 
                         updateDropDownFields();
+                        adjustDropDown(newName);
 
                         MessageBox.Show("Class name successfully changed to '" + newName + "'!");
 

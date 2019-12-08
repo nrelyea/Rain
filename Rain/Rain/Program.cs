@@ -27,16 +27,17 @@ namespace Rain
                 "Trinity Matrix",
                 "Ashonty Roberts",
                 "Noah Anderson",
-                "Andrew Gomez"
+                "Andrew Gomez",
+                "Joe Mama"
             };
 
             File.WriteAllText(@"ExampleStudents.json", JsonConvert.SerializeObject(studentList));
 
-            Directory.CreateDirectory("Classes\\Spanish 1");
+            //Directory.CreateDirectory("Classes\\Spanish 1");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LandingPage());
+            Application.Run(new LandingPage(""));
         }
     }
 }
