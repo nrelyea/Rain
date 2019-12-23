@@ -31,12 +31,14 @@ namespace Rain
 
         private void LandingPage_Load(object sender, EventArgs e)
         {
-            Image logoImage = ResizeImage(Image.FromFile("Assets/Logo 1.png"), logoPicBox.Width, logoPicBox.Height);
-            logoPicBox.Image = logoImage;
-        }
+            DisplayLogo();
+          
+        }       
 
         private void updateDropDownFields()
         {
+            // WARNING: WILL CRASH IF "Classes" folder does not exist
+
             var directories = Directory.GetDirectories("Classes");
 
             selectClassDropDown.Items.Clear();
@@ -296,6 +298,23 @@ namespace Rain
             }
 
             return destImage;
+        }
+
+        private void DisplayLogo()
+        {
+            logoPicBox.Size = new System.Drawing.Size(splitContainer1.Panel2.Width * 3 / 5, splitContainer1.Panel2.Width * 3 / 5);
+
+            int adjustedX = splitContainer1.Panel2.Width / 2 - logoPicBox.Width / 2;
+            int adjustedY = splitContainer1.Panel2.Height / 2 - logoPicBox.Height / 2;
+            logoPicBox.Location = new Point(adjustedX, adjustedY);
+
+            Image logoImage = ResizeImage(Image.FromFile("Assets/Logo with version.png"), logoPicBox.Width, logoPicBox.Height);
+            logoPicBox.Image = logoImage;
+        }
+
+        private void LandingPage_Resize(object sender, EventArgs e)
+        {
+            DisplayLogo();
         }
     }
 }

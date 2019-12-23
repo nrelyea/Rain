@@ -182,14 +182,12 @@
             // 
             // logoPicBox
             // 
-            this.logoPicBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.logoPicBox.BackColor = System.Drawing.Color.Transparent;
             this.logoPicBox.ImageLocation = "";
-            this.logoPicBox.Location = new System.Drawing.Point(19, 12);
+            this.logoPicBox.Location = new System.Drawing.Point(0, 0);
             this.logoPicBox.Margin = new System.Windows.Forms.Padding(0);
             this.logoPicBox.Name = "logoPicBox";
-            this.logoPicBox.Size = new System.Drawing.Size(500, 500);
-            this.logoPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logoPicBox.Size = new System.Drawing.Size(100, 100);
             this.logoPicBox.TabIndex = 0;
             this.logoPicBox.TabStop = false;
             // 
@@ -202,6 +200,7 @@
             this.Name = "LandingPage";
             this.Text = "Rain";
             this.Load += new System.EventHandler(this.LandingPage_Load);
+            this.Resize += new System.EventHandler(this.LandingPage_Resize);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
